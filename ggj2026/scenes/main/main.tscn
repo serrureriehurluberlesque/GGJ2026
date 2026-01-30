@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cbypkv6mwxs3h"]
 
 [ext_resource type="Script" uid="uid://v3kuevo6qtdo" path="res://scenes/main/main.gd" id="1_hyk8p"]
+[ext_resource type="Texture2D" uid="uid://c34ak4poc75x3" path="res://scenes/main/assets/background.png" id="2_iuonh"]
+[ext_resource type="Texture2D" uid="uid://dn8e5jau1getn" path="res://scenes/main/assets/background_nolight.png" id="2_k2fmo"]
 
 [node name="Root" type="Node" unique_id=1990394275]
 script = ExtResource("1_hyk8p")
@@ -8,13 +10,12 @@ script = ExtResource("1_hyk8p")
 [node name="Camera" type="Camera2D" parent="." unique_id=421635307]
 position = Vector2(960, 540)
 
-[node name="Background-up" type="ColorRect" parent="." unique_id=900961439]
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0.39215687, 0.40784314, 0.20784314, 1)
-
-[node name="Background-down" type="ColorRect" parent="." unique_id=1309745166]
-offset_top = 1080.0
+[node name="Background-off" type="TextureRect" parent="." unique_id=1154403445]
 offset_right = 1920.0
 offset_bottom = 2160.0
-color = Color(0.5294118, 0.38039216, 0.1882353, 1)
+texture = ExtResource("2_k2fmo")
+
+[node name="Background-on" type="TextureRect" parent="." unique_id=392310767]
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("2_iuonh")
