@@ -24,7 +24,7 @@ func _input(event):
 		elif event.is_action_pressed("activate"):
 			# Switch light
 			LIGHT_ON = !LIGHT_ON
-			$"Background-on".visible = LIGHT_ON
+			%bg_off.visible = !LIGHT_ON
 			switch_light.emit(LIGHT_ON)
 		
 func camera_trans(new_pos):
