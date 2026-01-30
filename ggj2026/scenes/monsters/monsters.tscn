@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dxdc0a75fejsx"]
+
+[ext_resource type="Script" uid="uid://bgu32265je5pc" path="res://scenes/monsters/monsters.gd" id="1_ur6ty"]
+
+[node name="Monsters" type="Node2D" unique_id=1929812014]
+script = ExtResource("1_ur6ty")
+
+[node name="TimerNextMonster" type="Timer" parent="." unique_id=1410417245]
