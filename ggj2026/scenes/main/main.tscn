@@ -19,6 +19,8 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_7smn1"]
 diffuse_texture = ExtResource("6_raeie")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_raeie"]
+
 [sub_resource type="Animation" id="Animation_6q06x"]
 length = 0.001
 
@@ -103,15 +105,16 @@ offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("2_ow5a4")
 
+[node name="trees_2" type="Sprite2D" parent="Background" unique_id=1439598406]
+z_index = 2
+position = Vector2(960, 1080)
+texture = ExtResource("4_th5th")
+
 [node name="bg_light" type="Node2D" parent="Background" unique_id=154036299]
 unique_name_in_owner = true
 
 [node name="textures" type="Node2D" parent="Background/bg_light" unique_id=1864510549]
 position = Vector2(960, 1080)
-
-[node name="trees_2" type="Sprite2D" parent="Background/bg_light/textures" unique_id=1439598406]
-z_index = 2
-texture = ExtResource("4_th5th")
 
 [node name="trees_4" type="Sprite2D" parent="Background/bg_light/textures" unique_id=1143187428]
 z_index = 4
@@ -143,21 +146,21 @@ offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("6_a8run")
 
-[node name="Masks" type="Node2D" parent="." unique_id=810561441]
+[node name="Masks" type="Node2D" parent="Background/bg_light" unique_id=810561441]
 z_index = 12
 
-[node name="mask_3" parent="Masks" unique_id=1181649016 instance=ExtResource("5_yyfjg")]
+[node name="mask_3" parent="Background/bg_light/Masks" unique_id=1181649016 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
 position = Vector2(1145.0001, 1794)
 rotation = 0.0062934435
 type = 3
 
-[node name="mask_2" parent="Masks" unique_id=1924044574 instance=ExtResource("5_yyfjg")]
+[node name="mask_2" parent="Background/bg_light/Masks" unique_id=1924044574 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
 position = Vector2(773, 1784)
 type = 2
 
-[node name="mask_1" parent="Masks" unique_id=1302221822 instance=ExtResource("5_yyfjg")]
+[node name="mask_1" parent="Background/bg_light/Masks" unique_id=1302221822 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
 position = Vector2(387, 1785.9999)
 rotation = -0.045837246
@@ -171,7 +174,9 @@ position = Vector2(960, 540)
 [node name="TransTimer" type="Timer" parent="Camera" unique_id=1312787439]
 
 [node name="MaskOn" type="Sprite2D" parent="Camera" unique_id=1420860986]
+light_mask = 0
 z_index = 15
+material = SubResource("ShaderMaterial_raeie")
 position = Vector2(0, 2160)
 texture = ExtResource("5_6q06x")
 
@@ -201,8 +206,8 @@ autoplay = true
 
 [node name="Sound1" type="AudioStreamPlayer" parent="." unique_id=1090949677]
 
-[connection signal="mask_chosen" from="Masks/mask_3" to="." method="_on_mask_chosen"]
-[connection signal="mask_chosen" from="Masks/mask_2" to="." method="_on_mask_chosen"]
-[connection signal="mask_chosen" from="Masks/mask_1" to="." method="_on_mask_chosen"]
+[connection signal="mask_chosen" from="Background/bg_light/Masks/mask_3" to="." method="_on_mask_chosen"]
+[connection signal="mask_chosen" from="Background/bg_light/Masks/mask_2" to="." method="_on_mask_chosen"]
+[connection signal="mask_chosen" from="Background/bg_light/Masks/mask_1" to="." method="_on_mask_chosen"]
 [connection signal="gotcha" from="Monsters" to="." method="_on_monsters_gotcha"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]
