@@ -44,8 +44,8 @@ func intro_second_part() -> void:
 	camera_pos = "up"
 	await $Camera/TransTimer.timeout
 	introed = true
+	send_visibility_to_monsters()
 	$Monsters.start()
-	$Monsters.update_knsea(knsea)
 
 func _input(event):
 	if not introed:
