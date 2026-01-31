@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bp53dafesam0x"]
+
+[ext_resource type="Texture2D" uid="uid://c3gxk1k53q61c" path="res://scenes/credits/assets/credits.png" id="1_dr3ri"]
+[ext_resource type="Script" uid="uid://bhnyot5gy0svi" path="res://scenes/credits/credits.gd" id="2_8n0nl"]
+
+[node name="Credits" type="TextureRect" unique_id=1564255892]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dr3ri")
+script = ExtResource("2_8n0nl")
