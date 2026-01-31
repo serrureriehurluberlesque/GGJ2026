@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d30v4tw35mtv4" path="res://scenes/main/assets/Shrubbery_8.png" id="7_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://bxhgi4mkmqvhw" path="res://scenes/main/assets/neutral_point_light.webp" id="13_th5th"]
 [ext_resource type="Script" uid="uid://b8xpq7qr8r6st" path="res://scenes/main/point_light_2d.gd" id="14_7smn1"]
+[ext_resource type="Texture2D" uid="uid://6bim0ug7hygo" path="res://scenes/main/assets/titlescreen.png" id="15_raeie"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7smn1"]
 diffuse_texture = ExtResource("6_raeie")
@@ -191,8 +192,8 @@ unique_name_in_owner = true
 visible = false
 z_index = 25
 offset_right = 1920.0
-offset_bottom = 2160.0
-texture = ExtResource("2_ow5a4")
+offset_bottom = 1080.0
+texture = ExtResource("15_raeie")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2105356055]
 autoplay = true

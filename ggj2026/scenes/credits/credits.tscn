@@ -2,12 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://c3gxk1k53q61c" path="res://scenes/credits/assets/credits.png" id="1_dr3ri"]
 [ext_resource type="Script" uid="uid://bhnyot5gy0svi" path="res://scenes/credits/credits.gd" id="2_8n0nl"]
+[ext_resource type="Texture2D" uid="uid://cpt8ccy46jq3x" path="res://scenes/credits/assets/credits2.png" id="3_c8xcy"]
 
-[node name="Credits" type="TextureRect" unique_id=1564255892]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Credits" type="TextureRect" unique_id=598742824]
 texture = ExtResource("1_dr3ri")
 script = ExtResource("2_8n0nl")
+
+[node name="Credits2" type="TextureRect" parent="." unique_id=1331892904]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_c8xcy")
