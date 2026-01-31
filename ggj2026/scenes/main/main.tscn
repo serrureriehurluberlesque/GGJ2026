@@ -12,8 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://dxdc0a75fejsx" path="res://scenes/monsters/monsters.tscn" id="6_ow5a4"]
 [ext_resource type="Texture2D" uid="uid://b6optcde54ge6" path="res://scenes/main/assets/Trees_7.png" id="6_raeie"]
 [ext_resource type="Texture2D" uid="uid://d30v4tw35mtv4" path="res://scenes/main/assets/Shrubbery_8.png" id="7_hxu8e"]
+[ext_resource type="Texture2D" uid="uid://bfdos0v00431a" path="res://scenes/main/assets/game_over.png" id="13_raeie"]
 [ext_resource type="Texture2D" uid="uid://bxhgi4mkmqvhw" path="res://scenes/main/assets/neutral_point_light.webp" id="13_th5th"]
-[ext_resource type="Script" path="res://scenes/main/point_light_2d.gd" id="14_7smn1"]
+[ext_resource type="Script" uid="uid://b8xpq7qr8r6st" path="res://scenes/main/point_light_2d.gd" id="14_7smn1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7smn1"]
 diffuse_texture = ExtResource("6_raeie")
@@ -167,11 +168,39 @@ type = 1
 [node name="Camera" type="Camera2D" parent="." unique_id=421635307]
 position = Vector2(960, 540)
 
+[node name="TransTimer" type="Timer" parent="Camera" unique_id=1312787439]
+
 [node name="MaskOn" type="Sprite2D" parent="Camera" unique_id=1420860986]
 z_index = 15
 texture = ExtResource("5_6q06x")
 
-[node name="TransTimer" type="Timer" parent="Camera" unique_id=1312787439]
+[node name="Jumpscare" type="TextureRect" parent="Camera" unique_id=1735291520]
+unique_name_in_owner = true
+visible = false
+z_index = 25
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -968.0
+offset_top = -542.0
+offset_right = 1086.7698
+offset_bottom = 520.796
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.93684465, 1.0299296)
+
+[node name="Timer" type="Timer" parent="Camera/Jumpscare" unique_id=2111997787]
+
+[node name="GameOver" type="TextureRect" parent="Camera" unique_id=162808678]
+unique_name_in_owner = true
+z_index = 100
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 953.0
+offset_bottom = 530.0
+texture = ExtResource("13_raeie")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
 libraries/ = SubResource("AnimationLibrary_hujxm")
@@ -204,3 +233,4 @@ autoplay = true
 [connection signal="mask_chosen" from="Masks/mask_1" to="." method="_on_mask_chosen"]
 [connection signal="gotcha" from="Monsters" to="." method="_on_monsters_gotcha"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]
+[connection signal="timeout" from="Camera/Jumpscare/Timer" to="." method="_on_jumpscare_timer_timeout"]

@@ -102,5 +102,10 @@ func _on_trans_timer_timeout() -> void:
 		send_visibility_to_monsters()
 
 
-func _on_monsters_gotcha() -> void:
-	pass # Replace with function body.
+func _on_monsters_gotcha(type: int) -> void:
+	%Jumpscare.texture = load("res://scenes/main/assets/jumpscare_%d.png" % type)
+	%Jumpscare.visible = true
+	%Jumpscare/Timer.start()
+
+func _on_jumpscare_timer_timeout() -> void:
+	%GameOver.show()
