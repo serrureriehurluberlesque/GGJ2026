@@ -4,11 +4,12 @@ extends Node2D
 signal win
 signal gotcha
 
-var BASE_TIME_MONSTER_SPAWN = 5.0
-var TIME_MONSTER_RANDF = 10.0
-var TIME_MONSTER_COEF = 1.0
+var BASE_TIME_MONSTER_SPAWN = 22.0
+var TIME_MONSTER_RANDF = 5.0
+var TIME_MONSTER_COEF = 1.5
+var VISIBLE_SLOW_SPAWN_COEF = 0.8
 
-var SPEED_MONSTER = 10.0
+var SPEED_MONSTER = 20.0
 
 var MIN_NBR_MONSTERS = 6
 var MAX_NBR_MONSTERS = 9
@@ -21,6 +22,7 @@ var monster
 
 var knsea:= true
 var mask:= 0
+var started:= false
 
 var debug = false
 
@@ -29,15 +31,22 @@ func _ready():
 	
 	$TimerNextMonster.connect("timeout", spawn_monster)
 	for i in randi_range(MIN_NBR_MONSTERS, MAX_NBR_MONSTERS):
-		next_monsters.append(BASE_TIME_MONSTER_SPAWN + randf() * (TIME_MONSTER_RANDF - TIME_MONSTER_COEF * i))
+		next_monsters.append(BASE_TIME_MONSTER_SPAWN - TIME_MONSTER_COEF * i + randf() * TIME_MONSTER_RANDF)
 	
 	if get_tree().current_scene == self:  # si c'est pas la main scene, faudra call start() pour que ça commence
 		start()
 		knsea = false
 		debug = true
 
+func _physics_process(delta):
+	if started:
+		$TimerNextMonster.set_paused(randf() <= VISIBLE_SLOW_SPAWN_COEF and knsea)
+
+		
+
 func start():
 	next_monster()
+	started = true
 	
 func next_monster():
 	if next_monsters:
