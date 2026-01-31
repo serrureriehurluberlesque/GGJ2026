@@ -12,7 +12,7 @@ var CAMERA_DOWN = Vector2(WIDTH*0.5, HEIGHT*1.5)
 # State variables
 var camera_pos = "up"
 var light_on = true
-var mask_on = false
+var mask_on = 0
 
 func _ready() -> void:
 	$Camera/MaskOn.position = Vector2(0.0, HEIGHT)
@@ -36,15 +36,15 @@ func _input(event):
 	if mask_on and event.is_action_pressed("click"):
 		$AnimationPlayer.play("mask_off")
 		find_child("mask_%s" % mask_on).remove()
-		$Monsters.update_masks(0)
 		$Monsters.update_knsea(true)
-		mask_on = null
+		mask_on = 0
+		$Monsters.update_masks(mask_on)
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
 
-func _on_mask_on(type: String) -> void:
+func _on_mask_on(type: int) -> void:
 	$AnimationPlayer.play("mask_on")
 	mask_on = type
-	$Monsters.update_masks(int(type))
+	$Monsters.update_masks(type)
 	$Monsters.update_knsea(false)
