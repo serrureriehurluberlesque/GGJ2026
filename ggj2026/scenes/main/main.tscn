@@ -72,13 +72,14 @@ script = ExtResource("1_hyk8p")
 
 [node name="Background" type="Node" parent="." unique_id=921327726]
 
-[node name="bg_off" type="TextureRect" parent="Background" unique_id=392310767]
+[node name="skytree_0" type="TextureRect" parent="Background" unique_id=392310767]
 unique_name_in_owner = true
 offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("2_ow5a4")
 
 [node name="bg_light" type="Node2D" parent="Background" unique_id=154036299]
+unique_name_in_owner = true
 
 [node name="trees_2" type="TextureRect" parent="Background/bg_light" unique_id=1858569500]
 z_index = 2
@@ -104,18 +105,18 @@ offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("7_hxu8e")
 
-[node name="ground_0" type="TextureRect" parent="Background" unique_id=61128486]
+[node name="ground_0" type="TextureRect" parent="Background/bg_light" unique_id=61128486]
 offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("3_hujxm")
 
-[node name="table_11" type="TextureRect" parent="Background" unique_id=1376601101]
+[node name="table_11" type="TextureRect" parent="Background/bg_light" unique_id=1376601101]
 z_index = 11
 offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("5_b1x3f")
 
-[node name="lantern_12" type="TextureRect" parent="Background" unique_id=525598338]
+[node name="lantern_12" type="TextureRect" parent="Background/bg_light" unique_id=525598338]
 z_index = 12
 offset_right = 1920.0
 offset_bottom = 2160.0
@@ -148,6 +149,7 @@ type = 1
 position = Vector2(960, 540)
 
 [node name="MaskOn" type="Sprite2D" parent="Camera" unique_id=1420860986]
+visible = false
 z_index = 15
 texture = ExtResource("5_6q06x")
 
