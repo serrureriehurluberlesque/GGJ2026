@@ -17,7 +17,7 @@ var mask_on = 0
 var knsea = true
 var is_tweening = false
 var introed = false
-var intro_finished = false
+var first_inputed = false
 var menued = false
 
 func _ready() -> void:
@@ -46,7 +46,7 @@ func intro_second_part() -> void:
 	camera_pos = "up"
 	await $Camera/TransTimer.timeout
 	send_visibility_to_monsters()
-	intro_finished = true
+	introed = true
 
 func _input(event):
 	if not menued:
@@ -54,11 +54,9 @@ func _input(event):
 			intro()
 			menued = true
 		return
-	if intro_finished and not introed:
-		if event.is_pressed():
-			$Monsters.start()
-			introed = true
-		return
+	if not first_inputed and event.is_pressed():
+		$Monsters.start()
+		first_inputed = true
 	if introed:
 		if camera_pos == "up":
 			if event.is_action_pressed("ui_down"):
