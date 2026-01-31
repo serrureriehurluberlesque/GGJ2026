@@ -128,7 +128,8 @@ z_index = 12
 
 [node name="mask_3" parent="Masks" unique_id=1181649016 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
-position = Vector2(300, 1780)
+position = Vector2(1145.0001, 1794)
+rotation = 0.0062934435
 type = 3
 
 [node name="mask_2" parent="Masks" unique_id=1924044574 instance=ExtResource("5_yyfjg")]
@@ -138,7 +139,8 @@ type = 2
 
 [node name="mask_1" parent="Masks" unique_id=1302221822 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
-position = Vector2(1231, 1813)
+position = Vector2(387, 1785.9999)
+rotation = -0.045837246
 type = 1
 
 [node name="Monsters" parent="." unique_id=1929812014 instance=ExtResource("6_ow5a4")]
@@ -172,4 +174,5 @@ texture = ExtResource("2_ow5a4")
 [connection signal="mask_chosen" from="Masks/mask_3" to="." method="_on_mask_chosen"]
 [connection signal="mask_chosen" from="Masks/mask_2" to="." method="_on_mask_chosen"]
 [connection signal="mask_chosen" from="Masks/mask_1" to="." method="_on_mask_chosen"]
+[connection signal="gotcha" from="Monsters" to="." method="_on_monsters_gotcha"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]

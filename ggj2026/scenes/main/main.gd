@@ -91,3 +91,7 @@ func _on_trans_timer_timeout() -> void:
 	if $Camera.position == CAMERA_DOWN:
 		camera_pos = "down"
 		send_visibility_to_monsters()
+
+
+func _on_monsters_gotcha() -> void:
+	pass # Replace with function body.
