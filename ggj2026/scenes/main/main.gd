@@ -39,7 +39,7 @@ func _input(event):
 			# Switch light
 			light_on = !light_on
 			%bg_light.modulate = Color("#fff") if light_on else Color("#3b3b3b")
-			$PointLight2D.enabled = false
+			$PointLight2D.enabled = light_on
 			send_visibility_to_monsters()
 	
 	if mask_on and event.is_action_pressed("click") and not $AnimationPlayer.is_playing():
