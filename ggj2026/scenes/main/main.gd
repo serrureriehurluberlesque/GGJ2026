@@ -1,7 +1,5 @@
 extends Node
 
-signal switch_light(on)
-signal remove_mask(type)
 
 # TODO: less hard-coded ?
 var 	WIDTH = 1920
@@ -32,11 +30,13 @@ func _input(event):
 			# Switch light
 			light_on = !light_on
 			%bg_off.visible = !light_on
-			switch_light.emit(light_on)
+			$Monsters.update_knsea = light_on
 	
 	if mask_on and event.is_action_pressed("click"):
 		$AnimationPlayer.play("mask_off")
 		find_child("mask_%s" % mask_on).remove()
+		$Monsters.update_masks(0)
+		$Monsters.update_knsea = true
 		mask_on = null
 		
 func camera_trans(new_pos):
@@ -45,3 +45,5 @@ func camera_trans(new_pos):
 func _on_mask_on(type: String) -> void:
 	$AnimationPlayer.play("mask_on")
 	mask_on = type
+	$Monsters.update_masks(int(type))
+	$Monsters.update_knsea = false

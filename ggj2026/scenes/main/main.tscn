@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dn8e5jau1getn" path="res://scenes/main/assets/background_nolight.png" id="2_k2fmo"]
 [ext_resource type="Texture2D" uid="uid://chbpq1sg7aph1" path="res://scenes/main/assets/mask_on.png" id="5_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cbqanbli3on4a" path="res://scenes/main/mask.tscn" id="5_yyfjg"]
+[ext_resource type="PackedScene" uid="uid://dxdc0a75fejsx" path="res://scenes/monsters/monsters.tscn" id="6_ow5a4"]
 
 [sub_resource type="Animation" id="Animation_6q06x"]
 length = 0.001
@@ -99,6 +100,8 @@ texture = ExtResource("5_6q06x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
 libraries/ = SubResource("AnimationLibrary_hujxm")
+
+[node name="Monsters" parent="." unique_id=1929812014 instance=ExtResource("6_ow5a4")]
 
 [connection signal="mask_on" from="mask_3" to="." method="_on_mask_on"]
 [connection signal="mask_on" from="mask_2" to="." method="_on_mask_on"]
