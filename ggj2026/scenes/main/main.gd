@@ -23,12 +23,12 @@ func _input(event):
 		if event.is_action_pressed("ui_down"):
 			camera_trans(CAMERA_DOWN)
 			camera_pos = "down"
-			$Monsters.update_knsea(false)
 	else:
 		if event.is_action_pressed("ui_up"):
 			camera_trans(CAMERA_UP)
 			camera_pos = "up"
-			$Monsters.update_knsea(true)
+			if light_on:
+				$Monsters.update_knsea(true)
 		elif event.is_action_pressed("activate"):
 			# Switch light
 			light_on = !light_on
@@ -43,7 +43,10 @@ func _input(event):
 		$Monsters.update_masks(mask_on)
 		
 func camera_trans(new_pos):
-	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
+	if new_pos == CAMERA_DOWN and light_on:
+		await tween.finished
+		$Monsters.update_knsea(false)
 
 func _on_mask_on(type: int) -> void:
 	$AnimationPlayer.play("mask_on")
