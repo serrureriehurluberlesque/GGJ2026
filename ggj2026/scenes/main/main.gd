@@ -47,8 +47,8 @@ func _input(event):
 		find_child("mask_%s" % mask_on).put_mask_back()
 		
 func i_can_see():
-	send_visibility_to_monsters()
 	mask_on = 0
+	send_visibility_to_monsters()
 	$Monsters.update_masks(mask_on)
 		
 func camera_trans(new_pos):

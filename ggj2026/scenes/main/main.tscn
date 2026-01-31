@@ -149,7 +149,6 @@ type = 1
 position = Vector2(960, 540)
 
 [node name="MaskOn" type="Sprite2D" parent="Camera" unique_id=1420860986]
-visible = false
 z_index = 15
 texture = ExtResource("5_6q06x")
 
