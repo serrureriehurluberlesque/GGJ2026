@@ -1,26 +1,20 @@
 [gd_scene format=3 uid="uid://cbypkv6mwxs3h"]
 
 [ext_resource type="Script" uid="uid://v3kuevo6qtdo" path="res://scenes/main/main.gd" id="1_hyk8p"]
-[ext_resource type="Texture2D" uid="uid://c34ak4poc75x3" path="res://scenes/main/assets/background.png" id="2_iuonh"]
-[ext_resource type="Texture2D" uid="uid://dn8e5jau1getn" path="res://scenes/main/assets/background_nolight.png" id="2_k2fmo"]
+[ext_resource type="Texture2D" uid="uid://dskcapkgv71x7" path="res://scenes/main/assets/Skytree_0.png" id="2_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://b5r838w2v2gls" path="res://scenes/main/assets/Ground_0.png" id="3_hujxm"]
+[ext_resource type="Texture2D" uid="uid://j0o4dhfknghi" path="res://scenes/main/assets/Trees_2.png" id="4_th5th"]
 [ext_resource type="Texture2D" uid="uid://chbpq1sg7aph1" path="res://scenes/main/assets/mask_on.png" id="5_6q06x"]
+[ext_resource type="Texture2D" uid="uid://p44k80y2gjyh" path="res://scenes/main/assets/Trees_5.png" id="5_7smn1"]
+[ext_resource type="Texture2D" uid="uid://bynx0jntesm5o" path="res://scenes/main/assets/Table_11.png" id="5_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://cbqanbli3on4a" path="res://scenes/main/mask.tscn" id="5_yyfjg"]
+[ext_resource type="Texture2D" uid="uid://xtp2oeyqcmcv" path="res://scenes/main/assets/Lantern_12.png" id="6_a8run"]
 [ext_resource type="PackedScene" uid="uid://dxdc0a75fejsx" path="res://scenes/monsters/monsters.tscn" id="6_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://b6optcde54ge6" path="res://scenes/main/assets/Trees_7.png" id="6_raeie"]
+[ext_resource type="Texture2D" uid="uid://d30v4tw35mtv4" path="res://scenes/main/assets/Shrubbery_8.png" id="7_hxu8e"]
 
 [sub_resource type="Animation" id="Animation_6q06x"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/MaskOn:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_hujxm"]
 resource_name = "mask_off"
@@ -35,6 +29,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 1080)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"i_can_see"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ow5a4"]
@@ -62,10 +70,56 @@ _data = {
 [node name="Root" type="Node" unique_id=1990394275]
 script = ExtResource("1_hyk8p")
 
-[node name="bg_on" type="TextureRect" parent="." unique_id=392310767]
+[node name="Background" type="Node" parent="." unique_id=921327726]
+
+[node name="bg_off" type="TextureRect" parent="Background" unique_id=392310767]
+unique_name_in_owner = true
 offset_right = 1920.0
 offset_bottom = 2160.0
-texture = ExtResource("2_iuonh")
+texture = ExtResource("2_ow5a4")
+
+[node name="bg_light" type="Node2D" parent="Background" unique_id=154036299]
+
+[node name="trees_2" type="TextureRect" parent="Background/bg_light" unique_id=1858569500]
+z_index = 2
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("4_th5th")
+
+[node name="trees_4" type="TextureRect" parent="Background/bg_light" unique_id=1781926860]
+z_index = 4
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("5_7smn1")
+
+[node name="trees_6" type="TextureRect" parent="Background/bg_light" unique_id=1514645746]
+z_index = 6
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("6_raeie")
+
+[node name="shrubbery_8" type="TextureRect" parent="Background/bg_light" unique_id=409042832]
+z_index = 8
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("7_hxu8e")
+
+[node name="ground_0" type="TextureRect" parent="Background" unique_id=61128486]
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("3_hujxm")
+
+[node name="table_11" type="TextureRect" parent="Background" unique_id=1376601101]
+z_index = 11
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("5_b1x3f")
+
+[node name="lantern_12" type="TextureRect" parent="Background" unique_id=525598338]
+z_index = 12
+offset_right = 1920.0
+offset_bottom = 2160.0
+texture = ExtResource("6_a8run")
 
 [node name="mask_3" parent="." unique_id=1181649016 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
@@ -85,13 +139,6 @@ position = Vector2(1138, 1600)
 scale = Vector2(0.4, 0.4)
 type = 1
 
-[node name="bg_off" type="TextureRect" parent="." unique_id=1154403445]
-unique_name_in_owner = true
-visible = false
-offset_right = 1920.0
-offset_bottom = 2160.0
-texture = ExtResource("2_k2fmo")
-
 [node name="Monsters" parent="." unique_id=1929812014 instance=ExtResource("6_ow5a4")]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=421635307]
@@ -105,7 +152,7 @@ texture = ExtResource("5_6q06x")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
 libraries/ = SubResource("AnimationLibrary_hujxm")
 
-[connection signal="mask_on" from="mask_3" to="." method="_on_mask_on"]
-[connection signal="mask_on" from="mask_2" to="." method="_on_mask_on"]
-[connection signal="mask_on" from="mask_1" to="." method="_on_mask_on"]
+[connection signal="mask_chosen" from="mask_3" to="." method="_on_mask_chosen"]
+[connection signal="mask_chosen" from="mask_2" to="." method="_on_mask_chosen"]
+[connection signal="mask_chosen" from="mask_1" to="." method="_on_mask_chosen"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]

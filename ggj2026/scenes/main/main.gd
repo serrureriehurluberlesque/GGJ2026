@@ -38,16 +38,18 @@ func _input(event):
 		elif event.is_action_pressed("activate"):
 			# Switch light
 			light_on = !light_on
-			%bg_off.visible = !light_on
+			%bg_off.z_index = 0 if light_on else 13 # TODO faire un truc plus subtil
 			send_visibility_to_monsters()
 	
-	if mask_on and event.is_action_pressed("click"):
+	if mask_on and event.is_action_pressed("click") and not $AnimationPlayer.is_playing():
 		# Remove mask
 		$AnimationPlayer.play("mask_off")
-		find_child("mask_%s" % mask_on).remove_mask()
-		send_visibility_to_monsters()
-		mask_on = 0
-		$Monsters.update_masks(mask_on)
+		find_child("mask_%s" % mask_on).put_mask_back()
+		
+func i_can_see():
+	send_visibility_to_monsters()
+	mask_on = 0
+	$Monsters.update_masks(mask_on)
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
@@ -60,12 +62,13 @@ func send_visibility_to_monsters():
 		knsea = new_knsea
 		$Monsters.update_knsea(knsea)
 
-func _on_mask_on(type: int) -> void:
-	$AnimationPlayer.play("mask_on")
-	mask_on = type
-	$Monsters.update_masks(type)
-	send_visibility_to_monsters()
-
+func _on_mask_chosen(type: int) -> void:
+	if mask_on == 0:
+		mask_on = type
+		find_child("mask_%s" % mask_on).take_mask()
+		$AnimationPlayer.play("mask_on")
+		$Monsters.update_masks(mask_on)
+		send_visibility_to_monsters()
 
 func _on_trans_timer_timeout() -> void:
 	if $Camera.position == CAMERA_DOWN:
