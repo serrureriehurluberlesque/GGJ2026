@@ -2,7 +2,7 @@ class_name Monsters
 extends Node2D
 
 signal win
-signal gotcha
+signal gotcha(type)
 
 var BASE_TIME_MONSTER_SPAWN = 22.0
 var TIME_MONSTER_RANDF = 5.0
