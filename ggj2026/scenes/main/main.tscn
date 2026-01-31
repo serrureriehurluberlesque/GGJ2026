@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://v3kuevo6qtdo" path="res://scenes/main/main.gd" id="1_hyk8p"]
 [ext_resource type="Texture2D" uid="uid://c34ak4poc75x3" path="res://scenes/main/assets/background.png" id="2_iuonh"]
 [ext_resource type="Texture2D" uid="uid://dn8e5jau1getn" path="res://scenes/main/assets/background_nolight.png" id="2_k2fmo"]
-[ext_resource type="Texture2D" uid="uid://csxwki5v0qqb8" path="res://scenes/main/assets/mask_3_wood.png" id="4_ow5a4"]
-[ext_resource type="Texture2D" uid="uid://btrjjf2xy28vq" path="res://scenes/main/assets/mask_2_wood.png" id="5_hujxm"]
 [ext_resource type="PackedScene" uid="uid://cbqanbli3on4a" path="res://scenes/main/mask.tscn" id="5_yyfjg"]
 
 [node name="Root" type="Node" unique_id=1990394275]
@@ -21,16 +19,17 @@ texture = ExtResource("2_iuonh")
 [node name="mask_3" parent="." unique_id=1181649016 instance=ExtResource("5_yyfjg")]
 position = Vector2(483, 1586)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_ow5a4")
+type = "3"
 
 [node name="mask_2" parent="." unique_id=1924044574 instance=ExtResource("5_yyfjg")]
 position = Vector2(799, 1575)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_hujxm")
+type = "2"
 
 [node name="mask_1" parent="." unique_id=1302221822 instance=ExtResource("5_yyfjg")]
 position = Vector2(1138, 1600)
 scale = Vector2(0.4, 0.4)
+type = "1"
 
 [node name="bg_off" type="TextureRect" parent="." unique_id=1154403445]
 unique_name_in_owner = true
