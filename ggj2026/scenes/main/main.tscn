@@ -12,6 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://dxdc0a75fejsx" path="res://scenes/monsters/monsters.tscn" id="6_ow5a4"]
 [ext_resource type="Texture2D" uid="uid://b6optcde54ge6" path="res://scenes/main/assets/Trees_7.png" id="6_raeie"]
 [ext_resource type="Texture2D" uid="uid://d30v4tw35mtv4" path="res://scenes/main/assets/Shrubbery_8.png" id="7_hxu8e"]
+[ext_resource type="Texture2D" uid="uid://bxhgi4mkmqvhw" path="res://scenes/main/assets/neutral_point_light.webp" id="13_th5th"]
+[ext_resource type="Script" uid="uid://b8xpq7qr8r6st" path="res://scenes/main/point_light_2d.gd" id="14_7smn1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7smn1"]
+diffuse_texture = ExtResource("6_raeie")
 
 [sub_resource type="Animation" id="Animation_6q06x"]
 length = 0.001
@@ -81,28 +86,23 @@ texture = ExtResource("2_ow5a4")
 [node name="bg_light" type="Node2D" parent="Background" unique_id=154036299]
 unique_name_in_owner = true
 
-[node name="trees_2" type="TextureRect" parent="Background/bg_light" unique_id=1858569500]
+[node name="textures" type="Node2D" parent="Background/bg_light" unique_id=1864510549]
+position = Vector2(960, 1080)
+
+[node name="trees_2" type="Sprite2D" parent="Background/bg_light/textures" unique_id=1439598406]
 z_index = 2
-offset_right = 1920.0
-offset_bottom = 2160.0
 texture = ExtResource("4_th5th")
 
-[node name="trees_4" type="TextureRect" parent="Background/bg_light" unique_id=1781926860]
+[node name="trees_4" type="Sprite2D" parent="Background/bg_light/textures" unique_id=1143187428]
 z_index = 4
-offset_right = 1920.0
-offset_bottom = 2160.0
 texture = ExtResource("5_7smn1")
 
-[node name="trees_6" type="TextureRect" parent="Background/bg_light" unique_id=1514645746]
+[node name="trees_6" type="Sprite2D" parent="Background/bg_light/textures" unique_id=298902526]
 z_index = 6
-offset_right = 1920.0
-offset_bottom = 2160.0
-texture = ExtResource("6_raeie")
+texture = SubResource("CanvasTexture_7smn1")
 
-[node name="shrubbery_8" type="TextureRect" parent="Background/bg_light" unique_id=409042832]
+[node name="shrubbery_8" type="Sprite2D" parent="Background/bg_light/textures" unique_id=1597720542]
 z_index = 8
-offset_right = 1920.0
-offset_bottom = 2160.0
 texture = ExtResource("7_hxu8e")
 
 [node name="ground_0" type="TextureRect" parent="Background/bg_light" unique_id=61128486]
@@ -156,6 +156,12 @@ texture = ExtResource("5_6q06x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
 libraries/ = SubResource("AnimationLibrary_hujxm")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1276321656]
+position = Vector2(1576, 1506.9999)
+scale = Vector2(8.246094, 8.246094)
+texture = ExtResource("13_th5th")
+script = ExtResource("14_7smn1")
 
 [connection signal="mask_chosen" from="Masks/mask_3" to="." method="_on_mask_chosen"]
 [connection signal="mask_chosen" from="Masks/mask_2" to="." method="_on_mask_chosen"]
