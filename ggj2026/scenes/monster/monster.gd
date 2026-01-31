@@ -123,7 +123,10 @@ func update_progress_pos():
 	z_index = step
 	var dark_factor = 1.0
 	if not knsea:
-		dark_factor = 0.05
+		if step < 10:
+			dark_factor = 0.05
+		else:
+			dark_factor = 0.5
 	modulate = Color(
 		properties_from_step[step]["dark"] * 1.0 * dark_factor, 
 		properties_from_step[step]["dark"] * 1.0 * dark_factor, 
