@@ -15,6 +15,10 @@ run/main_scene="uid://cbypkv6mwxs3h"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://gel301jqqxcu"
+
 [display]
 
 window/size/viewport_width=1920
