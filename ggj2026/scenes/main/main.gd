@@ -16,17 +16,33 @@ var light_on = true
 var mask_on = 0
 var knsea = true
 var is_tweening = false
+var introed = false
 
 func _ready() -> void:
 	if DEBUG:
 		Engine.time_scale = 2.0
+	$Monsters.debug = DEBUG
 	
 	$Camera/TransTimer.wait_time = TRANS_TIME
 	$Camera/MaskOn.position = Vector2(0.0, HEIGHT)
-	$Monsters.debug = DEBUG
+
+func intro() -> void:
+	$menu_25.hide()
+	$PointLight2D.enabled = true
+	await get_tree().create_timer(2.0).timeout
+	camera_trans(CAMERA_DOWN)
+	await $Camera/TransTimer.timeout
+	await get_tree().create_timer(2.0).timeout
+	camera_trans(CAMERA_UP)
+	await $Camera/TransTimer.timeout
+	introed = true
 	$Monsters.start()
 
 func _input(event):
+	if not introed:
+		if event.is_pressed():
+			intro()
+		return
 	if camera_pos == "up":
 		if event.is_action_pressed("ui_down"):
 			camera_trans(CAMERA_DOWN)
