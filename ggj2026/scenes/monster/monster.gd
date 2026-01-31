@@ -82,6 +82,10 @@ func update_progress_pos():
 	set_global_position(params_sides[side]["pos"] + Vector2((randf() - 0.5) * 200.0, progress * 300.0))
 	var scale_factor = 1.0 / ((1 - progress) * 10.0 + 1) * progress
 	set_scale(Vector2(scale_factor, scale_factor))
+	z_index = step
+	var dbdelta = -5 * (12.0 - step)
+	$AudioStreamPlayer2D.volume_db = dbdelta
+	$AudioStreamPlayer2D.play()
 
 func update_knsea(k):
 	knsea = k
