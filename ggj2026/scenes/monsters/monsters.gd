@@ -33,6 +33,7 @@ func _ready():
 	
 	if get_tree().current_scene == self:  # si c'est pas la main scene, faudra call start() pour que ça commence
 		start()
+		knsea = false
 		debug = true
 
 func start():

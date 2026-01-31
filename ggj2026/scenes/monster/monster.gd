@@ -54,11 +54,11 @@ func _physics_process(delta):
 	if not knsea:
 		hide()
 		if mask == type:
-			progress_flee += delta * 0.15
+			progress_flee = min(1.0, progress_flee + delta * 0.15)
 			if progress_flee >= 1.0:
 				flee.emit(self)
 		else:
-			progress += delta * 0.05
+			progress = min(1.0, progress + delta * 0.05)
 			update_progress_pos()
 			if progress:
 				goth_ya.emit(type)
