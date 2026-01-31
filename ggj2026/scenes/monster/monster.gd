@@ -135,7 +135,6 @@ func update_progress_pos():
 		properties_from_step[step]["dark"] * 1.0,
 		properties_from_step[step]["alpha"] * 1.0
 		)
-	print(properties_from_step[step]["dark"] * 1.0)
 	if debug:
 		print("i make a pas at step %s" % step)
 		print(get_global_position())

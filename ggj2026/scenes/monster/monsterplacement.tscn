@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bynx0jntesm5o" path="res://scenes/main/assets/Table_11.png" id="7_5jl8t"]
 [ext_resource type="Texture2D" uid="uid://xtp2oeyqcmcv" path="res://scenes/main/assets/Lantern_12.png" id="8_x5pcm"]
 [ext_resource type="PackedScene" uid="uid://baor8w1i34km7" path="res://scenes/monster/monster.tscn" id="9_4bpcy"]
-[ext_resource type="Texture2D" uid="uid://ovcs2mwx5mpn" path="res://scenes/monster/assets/Monster_1_v2.png" id="10_4bpcy"]
+[ext_resource type="Texture2D" uid="uid://30crnl37jxuj" path="res://scenes/monster/assets/mask_1_front.png" id="10_4bpcy"]
+[ext_resource type="Texture2D" uid="uid://cbrpp4ptpkkg" path="res://scenes/monster/assets/mask_2_front.png" id="11_aai8g"]
+[ext_resource type="Texture2D" uid="uid://d13udbxfmoybx" path="res://scenes/monster/assets/mask_3_front.png" id="12_1vkam"]
 
 [sub_resource type="Animation" id="Animation_4bpcy"]
 resource_name = "placement"
@@ -102,7 +104,7 @@ scale = Vector2(0.25, 0.25)
 
 [node name="Sprite2D" parent="Monster2" index="0" unique_id=1910906572]
 position = Vector2(50, -455)
-texture = ExtResource("10_4bpcy")
+texture = ExtResource("11_aai8g")
 
 [node name="Monster5" parent="." unique_id=1723117626 instance=ExtResource("9_4bpcy")]
 modulate = Color(0.5019608, 0.5019608, 0.5019608, 0.50980395)
@@ -112,7 +114,7 @@ scale = Vector2(0.15, 0.15)
 
 [node name="Sprite2D" parent="Monster5" index="0" unique_id=1910906572]
 position = Vector2(50, -455)
-texture = ExtResource("10_4bpcy")
+texture = ExtResource("12_1vkam")
 
 [node name="Monster3" parent="." unique_id=732341768 instance=ExtResource("9_4bpcy")]
 visible = false
@@ -123,7 +125,7 @@ scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" parent="Monster3" index="0" unique_id=1910906572]
 position = Vector2(50, -455)
-texture = ExtResource("10_4bpcy")
+texture = ExtResource("11_aai8g")
 
 [node name="Monster4" parent="." unique_id=634999818 instance=ExtResource("9_4bpcy")]
 z_index = 10
@@ -132,7 +134,7 @@ scale = Vector2(0.78, 0.78)
 
 [node name="Sprite2D" parent="Monster4" index="0" unique_id=1910906572]
 position = Vector2(50, -455)
-texture = ExtResource("10_4bpcy")
+texture = ExtResource("12_1vkam")
 
 [editable path="Monster"]
 [editable path="Monster2"]

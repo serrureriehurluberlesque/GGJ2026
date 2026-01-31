@@ -3,7 +3,7 @@ extends Node
 var DEBUG = true
 
 # TODO: less hard-coded ?
-var 	WIDTH = 1920
+var WIDTH = 1920
 var HEIGHT = 1080
 
 var TRANS_TIME = 0.5
