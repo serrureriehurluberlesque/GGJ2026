@@ -6,6 +6,58 @@
 [ext_resource type="Texture2D" uid="uid://chbpq1sg7aph1" path="res://scenes/main/assets/mask_on.png" id="5_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cbqanbli3on4a" path="res://scenes/main/mask.tscn" id="5_yyfjg"]
 
+[sub_resource type="Animation" id="Animation_6q06x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/MaskOn:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hujxm"]
+resource_name = "mask_off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/MaskOn:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1080)]
+}
+
+[sub_resource type="Animation" id="Animation_ow5a4"]
+resource_name = "mask_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/MaskOn:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hujxm"]
+_data = {
+&"RESET": SubResource("Animation_6q06x"),
+&"mask_off": SubResource("Animation_hujxm"),
+&"mask_on": SubResource("Animation_ow5a4")
+}
+
 [node name="Root" type="Node" unique_id=1990394275]
 script = ExtResource("1_hyk8p")
 
@@ -15,16 +67,19 @@ offset_bottom = 2160.0
 texture = ExtResource("2_iuonh")
 
 [node name="mask_3" parent="." unique_id=1181649016 instance=ExtResource("5_yyfjg")]
+unique_name_in_owner = true
 position = Vector2(483, 1586)
 scale = Vector2(0.5, 0.5)
 type = "3"
 
 [node name="mask_2" parent="." unique_id=1924044574 instance=ExtResource("5_yyfjg")]
+unique_name_in_owner = true
 position = Vector2(799, 1575)
 scale = Vector2(0.5, 0.5)
 type = "2"
 
 [node name="mask_1" parent="." unique_id=1302221822 instance=ExtResource("5_yyfjg")]
+unique_name_in_owner = true
 position = Vector2(1138, 1600)
 scale = Vector2(0.4, 0.4)
 type = "1"
@@ -40,8 +95,10 @@ texture = ExtResource("2_k2fmo")
 position = Vector2(960, 540)
 
 [node name="MaskOn" type="Sprite2D" parent="Camera" unique_id=1420860986]
-visible = false
 texture = ExtResource("5_6q06x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
+libraries/ = SubResource("AnimationLibrary_hujxm")
 
 [connection signal="mask_on" from="mask_3" to="." method="_on_mask_on"]
 [connection signal="mask_on" from="mask_2" to="." method="_on_mask_on"]
