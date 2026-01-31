@@ -106,7 +106,8 @@ func _physics_process(delta):
 	if not knsea:
 		#if debug and visible:
 			#print("on me %s voit plus" % name)
-		hide()
+		if not debug:
+			hide()
 		if mask == type:
 			progress_flee = min(1.0, progress_flee + delta * speed * 3.0)
 			if progress_flee >= 1.0:
