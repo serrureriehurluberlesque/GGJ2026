@@ -19,24 +19,62 @@ var speed:= 0.05
 var progress_flee:= 0.0
 var step:= 0
 
-var params_sides = {
-	"left": {"pos": Vector2(480, 0), "init_function": set_mask_left}, 
-	"center": {"pos": Vector2(860, 0), "init_function": set_mask_center}, 
-	"right": {"pos": Vector2(1340, 0), "init_function": set_mask_right},
-}
-
-var ypos_from_step = {
-	0: 0.27,
-	1: 0.28,
-	2: 0.30,
-	3: 0.32,
-	4: 0.34,
-	5: 0.37,
-	6: 0.40,
-	7: 0.43,
-	8: 0.46,
-	9: 0.5,
-	10: 0.55,
+var properties_from_step = {
+	0: {"scale": 0.1, "alpha": 0.1, "dark": 0.1, "poss": {
+		"left": [Vector2(110, 690)], 
+		"center": [Vector2(1060, 790)],
+		"right": [Vector2(1660, 690)],
+		}},
+	1: {"scale": 0.12, "alpha": 0.25, "dark": 0.25, "poss": {
+		"left": [Vector2(110, 690)], 
+		"center": [Vector2(1060, 790)],
+		"right": [Vector2(1660, 690)],
+		}},
+	2: {"scale": 0.15, "alpha": 0.5, "dark": 0.4, "poss": {
+		"left": [Vector2(380, 775)], 
+		"center": [Vector2(915, 795)],
+		"right": [Vector2(1790, 770)],
+		}},
+	3: {"scale": 0.19, "alpha": 0.6, "dark": 0.5, "poss": {
+		"left": [Vector2(380, 775)], 
+		"center": [Vector2(915, 795)],
+		"right": [Vector2(1790, 770)],
+		}},
+	4: {"scale": 0.25, "alpha": 0.75, "dark": 0.6, "poss": {
+		"left": [Vector2(380, 905)], 
+		"center": [Vector2(975, 1010)],
+		"right": [Vector2(1425, 965)],
+		}},
+	5: {"scale": 0.31, "alpha": 0.9, "dark": 0.7, "poss": {
+		"left": [Vector2(380, 905)], 
+		"center": [Vector2(975, 1010)],
+		"right": [Vector2(1425, 965)],
+		}},
+	6: {"scale": 0.39, "alpha": 1.0, "dark": 0.75, "poss": {
+		"left": [Vector2(430, 1210)], 
+		"center": [Vector2(1120, 1220)],
+		"right": [Vector2(1730, 1130)],
+		}},
+	7: {"scale": 0.5, "alpha": 1.0, "dark": 0.8, "poss": {
+		"left": [Vector2(430, 1210)], 
+		"center": [Vector2(1120, 1220)],
+		"right": [Vector2(1730, 1130)],
+		}},
+	8: {"scale": 0.62, "alpha": 1.0, "dark": 0.9, "poss": {
+		"left": [Vector2(430, 1210)], 
+		"center": [Vector2(1120, 1220)],
+		"right": [Vector2(1730, 1130)],
+		}},
+	9: {"scale": 0.78, "alpha": 1.0, "dark": 0.95, "poss": {
+		"left": [Vector2(420, 1200)], 
+		"center": [Vector2(960, 1200)],
+		"right": [Vector2(1500, 1200)],
+		}},
+	10: {"scale": 1.0, "alpha": 1.0, "dark": 1.0, "poss": {
+		"left": [Vector2(420, 1200)], 
+		"center": [Vector2(960, 1200)],
+		"right": [Vector2(1500, 1200)],
+		}},
 }
 
 static func new_monster(type: int, side: String, total_time: float, knsea: bool, mask: int, debug: bool) -> Monster:
@@ -49,29 +87,20 @@ static func new_monster(type: int, side: String, total_time: float, knsea: bool,
 	new_monster.speed = 1.0 / total_time
 	
 	for i in range(NBR_STEPS + 1):
-		new_monster.steps.append((i + 0.5) / NBR_STEPS)
+		new_monster.steps.append((i + randf()) / NBR_STEPS)
 	return new_monster
 
 func _ready():
-	params_sides[side]["init_function"].call()
+	set_mask_texture()
 	
 	update_progress_pos()
 	
 	if debug:
 		print("Raaarg, i'm a monster at %s" % get_global_position())
-
-func set_mask_left():
-	$Sprite2D.texture = load("res://scenes/monster/assets/mask_%d_side.png" % type)
-	$Sprite2D.set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
-
-func set_mask_center():
+		
+func set_mask_texture():
 	$Sprite2D.texture = load("res://scenes/monster/assets/mask_%d_front.png" % type)
-	$Sprite2D.set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
-
-func set_mask_right():
-	$Sprite2D.texture = load("res://scenes/monster/assets/mask_%d_side.png" % type)
-	$Sprite2D.flip_h = true
-	$Sprite2D.set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
+	$Sprite2D.set_position(Vector2(50, -455))
 
 func _physics_process(delta):
 	if not knsea:
@@ -96,14 +125,20 @@ func _physics_process(delta):
 		show()
 
 func update_progress_pos():
-	set_global_position(params_sides[side]["pos"] + Vector2((randf() - 0.5) * 300.0, 2160 * ypos_from_step[step]))
-	var scale_factor = 2.0 / ((1 - progress) * 20.0 + 1) * progress
-	set_scale(Vector2(scale_factor, scale_factor))
+	set_global_position(properties_from_step[step]["poss"][side][0])
+	set_scale(Vector2(properties_from_step[step]["scale"], properties_from_step[step]["scale"]))
 	z_index = step
-	var dbdelta = -5 * (12.0 - step)
+	modulate = Color(
+		properties_from_step[step]["dark"] * 1.0, 
+		properties_from_step[step]["dark"] * 1.0, 
+		properties_from_step[step]["dark"] * 1.0, 
+		properties_from_step[step]["alpha"] * 1.0
+		)
 	if debug:
 		print("i make a pas at step %s" % step)
 		print(get_global_position())
+	
+	var dbdelta = -5 * (12.0 - step)
 	$AudioStreamPlayer2D.volume_db = dbdelta
 	$AudioStreamPlayer2D.play()
 
