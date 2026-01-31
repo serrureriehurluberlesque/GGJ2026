@@ -186,12 +186,17 @@ libraries/ = SubResource("AnimationLibrary_hujxm")
 [node name="AnimationPlayerIntro" type="AnimationPlayer" parent="." unique_id=501664215]
 libraries/ = SubResource("AnimationLibrary_hujxm")
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1276321656]
+[node name="Light" type="Node" parent="." unique_id=1401377988]
+unique_name_in_owner = true
+
+[node name="LightSource" type="PointLight2D" parent="Light" unique_id=1276321656]
 position = Vector2(1576, 1506.9999)
 scale = Vector2(8.246094, 8.246094)
 enabled = false
 texture = ExtResource("13_th5th")
 script = ExtResource("14_7smn1")
+
+[node name="Timer" type="Timer" parent="Light" unique_id=185221228]
 
 [node name="menu_25" type="TextureRect" parent="." unique_id=2035129078]
 unique_name_in_owner = true
@@ -211,3 +216,4 @@ autoplay = true
 [connection signal="mask_chosen" from="Background/bg_light/Masks/mask_1" to="." method="_on_mask_chosen"]
 [connection signal="gotcha" from="Monsters" to="." method="_on_monsters_gotcha"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]
+[connection signal="timeout" from="Light/Timer" to="." method="_on_light_timer_timeout"]
