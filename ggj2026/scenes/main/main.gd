@@ -29,3 +29,10 @@ func _input(event):
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
+
+
+func _on_mask_on(type: String) -> void:
+	if type == "0":
+		$Camera/MaskOn.visible = false
+	else:
+		$Camera/MaskOn.visible = true
