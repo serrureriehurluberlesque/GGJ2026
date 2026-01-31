@@ -9,17 +9,8 @@ script = ExtResource("1_8srqk")
 [node name="Jumpscare" type="TextureRect" parent="." unique_id=2093487556]
 unique_name_in_owner = true
 z_index = 25
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -968.0
-offset_top = -542.0
-offset_right = 1086.7698
-offset_bottom = 520.796
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 2054.7698
+offset_bottom = 1062.796
 scale = Vector2(0.93684465, 1.0299296)
 
 [node name="Timer" type="Timer" parent="Jumpscare" unique_id=1730176569]
@@ -28,10 +19,7 @@ one_shot = true
 
 [node name="GameOver" type="TextureRect" parent="." unique_id=1469658756]
 unique_name_in_owner = true
-visible = false
 z_index = 100
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 953.0
-offset_bottom = 530.0
+offset_right = 1913.0
+offset_bottom = 1070.0
 texture = ExtResource("2_8srqk")
