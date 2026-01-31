@@ -35,8 +35,7 @@ static func new_monster(type: int, side: String, total_time: float, knsea: bool,
 func _ready():
 	params_sides[side]["init_function"].call()
 	
-	set_global_position(params_sides[side]["pos"])
-	set_scale(Vector2(0.25, 0.25))
+	update_progress_pos()
 	
 	if debug:
 		print("Raaarg, i'm a monster at %s" % get_global_position())
@@ -53,6 +52,7 @@ func set_mask_right():
 
 func _physics_process(delta):
 	if not knsea:
+		hide()
 		if mask == type:
 			progress_flee += delta * 0.15
 			if progress_flee >= 1.0:
@@ -62,9 +62,13 @@ func _physics_process(delta):
 			update_progress_pos()
 			if progress:
 				goth_ya.emit(type)
+	else:
+		show()
 
 func update_progress_pos():
-	set_global_position(params_sides[side]["pos"] + Vector2(0, progress * 10.0))
+	set_global_position(params_sides[side]["pos"] + Vector2(0, progress * 500.0))
+	var scale_factor = 1.0 / ((1 - progress) * 100.0 + 1)
+	set_scale(Vector2(scale_factor, scale_factor))
 
 func update_knsea(k):
 	knsea = k

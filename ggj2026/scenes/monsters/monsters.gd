@@ -2,6 +2,7 @@ class_name Monsters
 extends Node2D
 
 signal win
+signal gotcha
 
 var BASE_TIME_MONSTER_SPAWN = 5.0
 var TIME_MONSTER_RANDF = 10.0
@@ -12,7 +13,7 @@ var SPEED_MONSTER = 10.0
 var MIN_NBR_MONSTERS = 6
 var MAX_NBR_MONSTERS = 9
 
-var spawn_sides = [	"left", "center", "right"]
+var spawn_sides = ["left", "center", "right"]
 
 var next_monsters = []
 
@@ -44,28 +45,31 @@ func next_monster():
 		win.emit()
 
 func spawn_monster():
-	var empty_side = []
-	for s in spawn_sides:
-		var is_empty = true
-		for m in $Monsters.get_children():
-			if m.side == s:
-				is_empty = false
-				break
-		if is_empty:
-			empty_side.append(s)
-	
-	if empty_side:
-		var side = empty_side.pick_random()
-		var type = randi_range(1, 3)
-		var total_time = SPEED_MONSTER
-		var new_monster = Monster.new_monster(type, side, total_time, knsea, mask, debug)
-		$Monsters.add_child(new_monster)
-		new_monster.connect("flee", monster_flee)
-		new_monster.connect("goth_ya", goth_ya)
+	if not knsea:
+		var empty_side = []
+		for s in spawn_sides:
+			var is_empty = true
+			for m in $Monsters.get_children():
+				if m.side == s:
+					is_empty = false
+					break
+			if is_empty:
+				empty_side.append(s)
 		
-		next_monster()
+		if empty_side:
+			var side = empty_side.pick_random()
+			var type = randi_range(1, 3)
+			var total_time = SPEED_MONSTER
+			var new_monster = Monster.new_monster(type, side, total_time, knsea, mask, debug)
+			$Monsters.add_child(new_monster)
+			new_monster.connect("flee", monster_flee)
+			new_monster.connect("goth_ya", goth_ya)
+			
+			next_monster()
+		else:
+			$TimerNextMonster.start(2.0)
 	else:
-		$TimerNextMonster.start(1.0)
+		$TimerNextMonster.start(0.1)
 
 func update_knsea(k):
 	knsea = k
@@ -81,10 +85,12 @@ func transmit_knseamask_monsters():
 		m.update_masks(mask)
 
 func monster_flee(m):
-	m.free()
+	m.queue_free()
+	
+	await get_tree().create_timer(2.0).timeout
 	
 	if not next_monster() and not $Monsters.get_children():
 		win.emit()
 
 func goth_ya(type):
-	print("nomnomnom %s" % type)
+	gotcha.emit(type)
