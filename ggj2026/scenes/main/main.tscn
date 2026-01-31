@@ -92,6 +92,8 @@ offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("2_k2fmo")
 
+[node name="Monsters" parent="." unique_id=1929812014 instance=ExtResource("6_ow5a4")]
+
 [node name="Camera" type="Camera2D" parent="." unique_id=421635307]
 position = Vector2(960, 540)
 
@@ -100,8 +102,6 @@ texture = ExtResource("5_6q06x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
 libraries/ = SubResource("AnimationLibrary_hujxm")
-
-[node name="Monsters" parent="." unique_id=1929812014 instance=ExtResource("6_ow5a4")]
 
 [connection signal="mask_on" from="mask_3" to="." method="_on_mask_on"]
 [connection signal="mask_on" from="mask_2" to="." method="_on_mask_on"]
