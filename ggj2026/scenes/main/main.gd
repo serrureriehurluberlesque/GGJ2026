@@ -130,3 +130,7 @@ func _on_light_timer_timeout() -> void:
 	switch_light(true)
 	%Light/Timer.wait_time = randf_range(LIGHT_OFF_MIN, LIGHT_OFF_MAX)
 	%Light/Timer.start()
+
+
+func _on_lantern_light_toggled() -> void:
+	switch_light()
