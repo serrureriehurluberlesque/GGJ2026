@@ -195,6 +195,7 @@ scale = Vector2(0.93684465, 1.0299296)
 
 [node name="GameOver" type="TextureRect" parent="Camera" unique_id=162808678]
 unique_name_in_owner = true
+visible = false
 z_index = 100
 offset_left = -960.0
 offset_top = -540.0
