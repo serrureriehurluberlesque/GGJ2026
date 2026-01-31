@@ -16,6 +16,9 @@ var camera_pos = "up"
 var light_on = true
 var mask_on = false
 
+func _ready() -> void:
+	$Camera/MaskOn.position = Vector2(0.0, HEIGHT)
+
 func _input(event):
 	if camera_pos == "up":
 		if event.is_action_pressed("ui_down"):
@@ -32,14 +35,13 @@ func _input(event):
 			switch_light.emit(light_on)
 	
 	if mask_on and event.is_action_pressed("click"):
-		$Camera/MaskOn.visible = false
+		$AnimationPlayer.play("mask_off")
 		find_child("mask_%s" % mask_on).remove()
 		mask_on = null
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
 
-
 func _on_mask_on(type: String) -> void:
-	$Camera/MaskOn.visible = true
+	$AnimationPlayer.play("mask_on")
 	mask_on = type
