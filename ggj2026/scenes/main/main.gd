@@ -54,7 +54,7 @@ func _input(event):
 			intro()
 			menued = true
 		return
-	if intro_finished:
+	if intro_finished and not introed:
 		if event.is_pressed():
 			$Monsters.start()
 			introed = true
