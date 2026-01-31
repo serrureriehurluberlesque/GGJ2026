@@ -60,12 +60,14 @@ func spawn_monster():
 		var total_time = SPEED_MONSTER
 		var new_monster = Monster.new_monster(type, side, total_time, knsea, mask, debug)
 		$Monsters.add_child(new_monster)
+		new_monster.connect("flee", monster_flee)
+		new_monster.connect("goth_ya", goth_ya)
 		
 		next_monster()
 	else:
 		$TimerNextMonster.start(1.0)
 
-func update_visible(k):
+func update_knsea(k):
 	knsea = k
 	transmit_knseamask_monsters()
 
@@ -83,3 +85,6 @@ func monster_flee(m):
 	
 	if not next_monster() and not $Monsters.get_children():
 		win.emit()
+
+func goth_ya(type):
+	print("nomnomnom %s" % type)

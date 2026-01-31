@@ -1,6 +1,9 @@
 class_name Monster
 extends Node2D
 
+signal flee(monster)
+signal goth_ya(type)
+
 const monster_scene: PackedScene = preload("res://scenes/monster/monster.tscn")
 
 var type: int
@@ -51,12 +54,19 @@ func set_mask_right():
 func _physics_process(delta):
 	if not knsea:
 		if mask == type:
-			progress_flee += delta
+			progress_flee += delta * 0.15
+			if progress_flee >= 1.0:
+				flee.emit(self)
 		else:
-			progress += delta
-			set_global_position(params_sides[side]["pos"] + Vector2(0, progress * 10.0))
+			progress += delta * 0.05
+			update_progress_pos()
+			if progress:
+				goth_ya.emit(type)
 
-func update_visible(k):
+func update_progress_pos():
+	set_global_position(params_sides[side]["pos"] + Vector2(0, progress * 10.0))
+
+func update_knsea(k):
 	knsea = k
 
 func update_masks(m):
