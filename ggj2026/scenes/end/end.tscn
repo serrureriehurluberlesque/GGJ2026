@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pfcu0f4p7x01"]
 
 [ext_resource type="Script" uid="uid://bqfphw1l03c2w" path="res://scenes/end/end.gd" id="1_8srqk"]
-[ext_resource type="Texture2D" path="res://scenes/main/assets/game_over.png" id="1_orl65"]
+[ext_resource type="Texture2D" uid="uid://vjxptq035rsv" path="res://scenes/end/assets/game_over.png" id="2_8srqk"]
 
 [node name="End" type="Node2D" unique_id=1640037484]
 script = ExtResource("1_8srqk")
@@ -34,4 +34,4 @@ offset_left = -960.0
 offset_top = -540.0
 offset_right = 953.0
 offset_bottom = 530.0
-texture = ExtResource("1_orl65")
+texture = ExtResource("2_8srqk")

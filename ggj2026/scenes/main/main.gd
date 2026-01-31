@@ -103,3 +103,5 @@ func _on_trans_timer_timeout() -> void:
 
 
 func _on_monsters_gotcha(type: int) -> void:
+	Global.type = type
+	get_tree().change_scene_to_file("res://scenes/end/end.tscn")
