@@ -38,7 +38,7 @@ func _input(event):
 		elif event.is_action_pressed("activate"):
 			# Switch light
 			light_on = !light_on
-			%bg_off.z_index = 0 if light_on else 13 # TODO faire un truc plus subtil
+			%bg_light.modulate = Color("#fff") if light_on else Color("#3b3b3b")
 			send_visibility_to_monsters()
 	
 	if mask_on and event.is_action_pressed("click") and not $AnimationPlayer.is_playing():
