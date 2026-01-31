@@ -14,11 +14,14 @@ var CAMERA_DOWN = Vector2(WIDTH*0.5, HEIGHT*1.5)
 var camera_pos = "up"
 var light_on = true
 var mask_on = 0
+var knsea = true
+var is_tweening = false
 
 func _ready() -> void:
 	if DEBUG:
 		Engine.time_scale = 2.0
 	
+	$Camera/TransTimer.wait_time = TRANS_TIME
 	$Camera/MaskOn.position = Vector2(0.0, HEIGHT)
 	$Monsters.debug = DEBUG
 	$Monsters.start()
@@ -27,7 +30,6 @@ func _input(event):
 	if camera_pos == "up":
 		if event.is_action_pressed("ui_down"):
 			camera_trans(CAMERA_DOWN)
-			camera_pos = "down"
 	else:
 		if event.is_action_pressed("ui_up"):
 			camera_trans(CAMERA_UP)
@@ -37,7 +39,7 @@ func _input(event):
 			# Switch light
 			light_on = !light_on
 			%bg_off.visible = !light_on
-			$Monsters.update_knsea(light_on)
+			send_visibility_to_monsters()
 	
 	if mask_on and event.is_action_pressed("click"):
 		# Remove mask
@@ -48,16 +50,24 @@ func _input(event):
 		$Monsters.update_masks(mask_on)
 		
 func camera_trans(new_pos):
-	var tween = create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
-	if new_pos == CAMERA_DOWN:
-		await tween.finished
-		send_visibility_to_monsters()
+	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
+	camera_pos = "trans"
+	$Camera/TransTimer.start()
 		
 func send_visibility_to_monsters():
-	$Monsters.update_knsea(light_on and camera_pos == "up" and not mask_on)
+	var new_knsea = light_on and camera_pos != "down" and not mask_on
+	if new_knsea != knsea:
+		knsea = new_knsea
+		$Monsters.update_knsea(knsea)
 
 func _on_mask_on(type: int) -> void:
 	$AnimationPlayer.play("mask_on")
 	mask_on = type
 	$Monsters.update_masks(type)
 	send_visibility_to_monsters()
+
+
+func _on_trans_timer_timeout() -> void:
+	if $Camera.position == CAMERA_DOWN:
+		camera_pos = "down"
+		send_visibility_to_monsters()
