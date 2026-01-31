@@ -103,9 +103,3 @@ func _on_trans_timer_timeout() -> void:
 
 
 func _on_monsters_gotcha(type: int) -> void:
-	%Jumpscare.texture = load("res://scenes/main/assets/jumpscare_%d.png" % type)
-	%Jumpscare.visible = true
-	%Jumpscare/Timer.start()
-
-func _on_jumpscare_timer_timeout() -> void:
-	%GameOver.visible = true

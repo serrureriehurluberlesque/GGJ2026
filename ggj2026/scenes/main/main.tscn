@@ -192,6 +192,8 @@ grow_vertical = 2
 scale = Vector2(0.93684465, 1.0299296)
 
 [node name="Timer" type="Timer" parent="Camera/Jumpscare" unique_id=2111997787]
+wait_time = 2.0
+one_shot = true
 
 [node name="GameOver" type="TextureRect" parent="Camera" unique_id=162808678]
 unique_name_in_owner = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by8u8fht083h1"
-path="res://.godot/imported/jumpscare_2.png-7a8642789cfbf6b4be008679ede96010.ctex"
+uid="uid://cfnmpwoj2r5ws"
+path="res://.godot/imported/jumpscare_2.png-50e3c1d9579bef5c85e79a50c8e56b2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main/assets/jumpscare_2.png"
-dest_files=["res://.godot/imported/jumpscare_2.png-7a8642789cfbf6b4be008679ede96010.ctex"]
+source_file="res://scenes/end/assets/jumpscare_2.png"
+dest_files=["res://.godot/imported/jumpscare_2.png-50e3c1d9579bef5c85e79a50c8e56b2a.ctex"]
 
 [params]
 
