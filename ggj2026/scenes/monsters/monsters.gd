@@ -7,7 +7,7 @@ signal gotcha
 var BASE_TIME_MONSTER_SPAWN = 22.0
 var TIME_MONSTER_RANDF = 5.0
 var TIME_MONSTER_COEF = 1.5
-var VISIBLE_SLOW_SPAWN_COEF = 0.8
+var VISIBLE_SLOW_SPAWN_COEF = 0.5
 
 var SPEED_MONSTER = 20.0
 
@@ -41,8 +41,6 @@ func _ready():
 func _physics_process(delta):
 	if started:
 		$TimerNextMonster.set_paused(randf() <= VISIBLE_SLOW_SPAWN_COEF and knsea)
-
-		
 
 func start():
 	next_monster()

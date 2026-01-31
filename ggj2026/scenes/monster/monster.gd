@@ -14,6 +14,7 @@ var debug: bool
 
 var steps:= []
 var progress:= 0.0
+var speed:= 0.05
 var progress_flee:= 0.0
 var step:= 0
 
@@ -30,6 +31,7 @@ static func new_monster(type: int, side: String, total_time: float, knsea: bool,
 	new_monster.knsea = knsea
 	new_monster.mask = mask
 	new_monster.debug = debug
+	new_monster.speed = 1.0 / total_time
 	return new_monster
 
 func _ready():
@@ -54,11 +56,11 @@ func _physics_process(delta):
 	if not knsea:
 		hide()
 		if mask == type:
-			progress_flee = min(1.0, progress_flee + delta * 0.15)
+			progress_flee = min(1.0, progress_flee + delta * speed * 3.0)
 			if progress_flee >= 1.0:
 				flee.emit(self)
 		else:
-			progress = min(1.0, progress + delta * 0.05)
+			progress = min(1.0, progress + delta * speed)	
 			update_progress_pos()
 			if progress:
 				goth_ya.emit(type)
@@ -67,7 +69,7 @@ func _physics_process(delta):
 
 func update_progress_pos():
 	set_global_position(params_sides[side]["pos"] + Vector2(0, progress * 500.0))
-	var scale_factor = 1.0 / ((1 - progress) * 100.0 + 1)
+	var scale_factor = 1.0 / ((1 - progress) * 50.0 + 1)
 	set_scale(Vector2(scale_factor, scale_factor))
 
 func update_knsea(k):
