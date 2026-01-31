@@ -16,6 +16,7 @@ var mask_on = false
 
 func _ready() -> void:
 	$Camera/MaskOn.position = Vector2(0.0, HEIGHT)
+	$Monsters.start()
 
 func _input(event):
 	if camera_pos == "up":
