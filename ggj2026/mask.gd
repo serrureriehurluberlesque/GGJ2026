@@ -12,5 +12,5 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		%Anim.play("put_on_mask")
 		mask_on.emit(type)
 
-func remove():
+func remove_mask():
 	%Anim.play("remove_mask")
