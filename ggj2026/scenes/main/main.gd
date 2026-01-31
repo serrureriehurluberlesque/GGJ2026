@@ -28,7 +28,7 @@ func _ready() -> void:
 	$Monsters.debug = DEBUG
 	
 	$Camera/TransTimer.wait_time = TRANS_TIME
-	$Camera/MaskOn.position = Vector2(0.0, HEIGHT)
+	$Camera/MaskOn.position = Vector2(0.0, 2*HEIGHT)
 
 func intro() -> void:
 	$menu_25.hide()
