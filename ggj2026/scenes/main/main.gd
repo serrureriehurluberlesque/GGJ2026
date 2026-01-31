@@ -1,6 +1,7 @@
 extends Node
 
 signal switch_light(on)
+signal remove_mask(type)
 
 # TODO: less hard-coded ?
 var 	WIDTH = 1920
@@ -9,30 +10,36 @@ var HEIGHT = 1080
 var TRANS_TIME = 0.5
 var CAMERA_UP = Vector2(WIDTH*0.5, HEIGHT*0.5)
 var CAMERA_DOWN = Vector2(WIDTH*0.5, HEIGHT*1.5)
-var CAMERA_POS = "up"
-var LIGHT_ON = true
+
+# State variables
+var camera_pos = "up"
+var light_on = true
+var mask_on = false
 
 func _input(event):
-	if CAMERA_POS == "up":
+	if camera_pos == "up":
 		if event.is_action_pressed("ui_down"):
 			camera_trans(CAMERA_DOWN)
-			CAMERA_POS = "down"
+			camera_pos = "down"
 	else:
 		if event.is_action_pressed("ui_up"):
 			camera_trans(CAMERA_UP)
-			CAMERA_POS = "up"
+			camera_pos = "up"
 		elif event.is_action_pressed("activate"):
 			# Switch light
-			LIGHT_ON = !LIGHT_ON
-			%bg_off.visible = !LIGHT_ON
-			switch_light.emit(LIGHT_ON)
+			light_on = !light_on
+			%bg_off.visible = !light_on
+			switch_light.emit(light_on)
+	
+	if mask_on and event.is_action_pressed("click"):
+		$Camera/MaskOn.visible = false
+		find_child("mask_%s" % mask_on).remove()
+		mask_on = null
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
 
 
 func _on_mask_on(type: String) -> void:
-	if type == "0":
-		$Camera/MaskOn.visible = false
-	else:
-		$Camera/MaskOn.visible = true
+	$Camera/MaskOn.visible = true
+	mask_on = type

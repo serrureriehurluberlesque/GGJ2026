@@ -4,6 +4,18 @@
 [ext_resource type="Script" uid="uid://bfqa8e3bd6jgs" path="res://mask.gd" id="1_sq1ky"]
 
 [sub_resource type="Animation" id="Animation_1nqh6"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_54no3"]
 resource_name = "slide_off_table"
@@ -20,10 +32,26 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, 2000)]
 }
 
+[sub_resource type="Animation" id="Animation_q6u5x"]
+resource_name = "remove_mask"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 2000), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q6u5x"]
 _data = {
 &"RESET": SubResource("Animation_1nqh6"),
-&"put_on_mask": SubResource("Animation_54no3")
+&"put_on_mask": SubResource("Animation_54no3"),
+&"remove_mask": SubResource("Animation_q6u5x")
 }
 
 [node name="mask" type="Node2D" unique_id=1679727509]

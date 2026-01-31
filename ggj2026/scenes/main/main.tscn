@@ -15,16 +15,19 @@ offset_bottom = 2160.0
 texture = ExtResource("2_iuonh")
 
 [node name="mask_3" parent="." unique_id=1181649016 instance=ExtResource("5_yyfjg")]
+unique_name_in_owner = true
 position = Vector2(483, 1586)
 scale = Vector2(0.5, 0.5)
 type = "3"
 
 [node name="mask_2" parent="." unique_id=1924044574 instance=ExtResource("5_yyfjg")]
+unique_name_in_owner = true
 position = Vector2(799, 1575)
 scale = Vector2(0.5, 0.5)
 type = "2"
 
 [node name="mask_1" parent="." unique_id=1302221822 instance=ExtResource("5_yyfjg")]
+unique_name_in_owner = true
 position = Vector2(1138, 1600)
 scale = Vector2(0.4, 0.4)
 type = "1"

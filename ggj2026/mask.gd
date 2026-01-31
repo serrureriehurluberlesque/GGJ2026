@@ -15,3 +15,6 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 func _on_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "put_on_mask":
 		mask_on.emit(type)
+
+func remove():
+	%Anim.play("remove_mask")
