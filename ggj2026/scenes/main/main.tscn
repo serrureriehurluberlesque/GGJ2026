@@ -46,7 +46,7 @@ tracks/0/path = NodePath("Camera/MaskOn:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 1080), Vector2(0, 0)]
@@ -71,19 +71,19 @@ texture = ExtResource("2_iuonh")
 unique_name_in_owner = true
 position = Vector2(483, 1586)
 scale = Vector2(0.5, 0.5)
-type = "3"
+type = 3
 
 [node name="mask_2" parent="." unique_id=1924044574 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
 position = Vector2(799, 1575)
 scale = Vector2(0.5, 0.5)
-type = "2"
+type = 2
 
 [node name="mask_1" parent="." unique_id=1302221822 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
 position = Vector2(1138, 1600)
 scale = Vector2(0.4, 0.4)
-type = "1"
+type = 1
 
 [node name="bg_off" type="TextureRect" parent="." unique_id=1154403445]
 unique_name_in_owner = true
