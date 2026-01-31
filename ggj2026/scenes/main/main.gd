@@ -1,5 +1,6 @@
 extends Node
 
+var DEBUG = true
 
 # TODO: less hard-coded ?
 var 	WIDTH = 1920
@@ -15,7 +16,11 @@ var light_on = true
 var mask_on = 0
 
 func _ready() -> void:
+	if DEBUG:
+		Engine.time_scale = 2.0
+	
 	$Camera/MaskOn.position = Vector2(0.0, HEIGHT)
+	$Monsters.debug = DEBUG
 	$Monsters.start()
 
 func _input(event):

@@ -80,6 +80,8 @@ func spawn_monster():
 		$TimerNextMonster.start(0.1)
 
 func update_knsea(k):
+	if debug:
+		print("on me voit" if k else "on me voit plus")
 	knsea = k
 	transmit_knseamask_monsters()
 
