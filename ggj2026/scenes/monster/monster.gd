@@ -5,6 +5,7 @@ signal flee(monster)
 signal goth_ya(type)
 
 const monster_scene: PackedScene = preload("res://scenes/monster/monster.tscn")
+const NBR_STEPS := 10
 
 var type: int
 var side: String
@@ -32,6 +33,9 @@ static func new_monster(type: int, side: String, total_time: float, knsea: bool,
 	new_monster.mask = mask
 	new_monster.debug = debug
 	new_monster.speed = 1.0 / total_time
+	
+	for i in range(NBR_STEPS + 1):
+		new_monster.steps.append((i + 0.5) / NBR_STEPS)
 	return new_monster
 
 func _ready():
@@ -62,18 +66,21 @@ func _physics_process(delta):
 			if progress_flee >= 1.0:
 				flee.emit(self)
 		else:
-			progress = min(1.0, progress + delta * speed)	
-			update_progress_pos()
-			if progress:
+			progress = min(1.0, progress + delta * speed)
+			
+			if progress >= 1.0:
 				goth_ya.emit(type)
+			elif progress > steps[step]:
+				step += 1
+				update_progress_pos()
 	else:
 		#if debug and not visible:
 			#print("on me %s voit" % name)
 		show()
 
 func update_progress_pos():
-	set_global_position(params_sides[side]["pos"] + Vector2(0, progress * 500.0))
-	var scale_factor = 1.0 / ((1 - progress) * 50.0 + 1)
+	set_global_position(params_sides[side]["pos"] + Vector2((randf() - 0.5) * 200.0, progress * 300.0))
+	var scale_factor = 1.0 / ((1 - progress) * 10.0 + 1) * progress
 	set_scale(Vector2(scale_factor, scale_factor))
 
 func update_knsea(k):
