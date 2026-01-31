@@ -54,6 +54,8 @@ func set_mask_right():
 
 func _physics_process(delta):
 	if not knsea:
+		if debug and visible:
+			print("on me %s voit plus" % name)
 		hide()
 		if mask == type:
 			progress_flee = min(1.0, progress_flee + delta * speed * 3.0)
@@ -65,6 +67,8 @@ func _physics_process(delta):
 			if progress:
 				goth_ya.emit(type)
 	else:
+		if debug and not visible:
+			print("on me %s voit" % name)
 		show()
 
 func update_progress_pos():
