@@ -108,4 +108,4 @@ func _on_monsters_gotcha(type: int) -> void:
 	%Jumpscare/Timer.start()
 
 func _on_jumpscare_timer_timeout() -> void:
-	%GameOver.show()
+	%GameOver.visible = true
