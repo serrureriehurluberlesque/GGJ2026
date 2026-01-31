@@ -20,53 +20,53 @@ var progress_flee:= 0.0
 var step:= 0
 
 var properties_from_step = {
-	0: {"scale": 0.1, "alpha": 0.1, "dark": 0.1, "poss": {
+	0: {"scale": 0.1, "alpha": 0.2, "dark": 0.00, "poss": {
 		"left": [Vector2(110, 690)], 
 		"center": [Vector2(1060, 790)],
 		"right": [Vector2(1660, 690)],
 		}},
-	1: {"scale": 0.12, "alpha": 0.25, "dark": 0.25, "poss": {
+	1: {"scale": 0.12, "alpha": 0.35, "dark": 0.0, "poss": {
 		"left": [Vector2(110, 690)], 
 		"center": [Vector2(1060, 790)],
 		"right": [Vector2(1660, 690)],
 		}},
-	2: {"scale": 0.15, "alpha": 0.5, "dark": 0.4, "poss": {
+	2: {"scale": 0.15, "alpha": 1.0, "dark": 0.00, "poss": {
 		"left": [Vector2(380, 775)], 
 		"center": [Vector2(915, 795)],
 		"right": [Vector2(1790, 770)],
 		}},
-	3: {"scale": 0.19, "alpha": 0.6, "dark": 0.5, "poss": {
+	3: {"scale": 0.19, "alpha": 1.0, "dark": 0.05, "poss": {
 		"left": [Vector2(380, 775)], 
 		"center": [Vector2(915, 795)],
 		"right": [Vector2(1790, 770)],
 		}},
-	4: {"scale": 0.25, "alpha": 0.75, "dark": 0.6, "poss": {
+	4: {"scale": 0.25, "alpha": 1.0, "dark": 0.1, "poss": {
 		"left": [Vector2(380, 905)], 
 		"center": [Vector2(975, 1010)],
 		"right": [Vector2(1425, 965)],
 		}},
-	5: {"scale": 0.31, "alpha": 0.9, "dark": 0.7, "poss": {
+	5: {"scale": 0.31, "alpha": 1.0, "dark": 0.15, "poss": {
 		"left": [Vector2(380, 905)], 
 		"center": [Vector2(975, 1010)],
 		"right": [Vector2(1425, 965)],
 		}},
-	6: {"scale": 0.39, "alpha": 1.0, "dark": 0.75, "poss": {
+	6: {"scale": 0.39, "alpha": 1.0, "dark": 0.25, "poss": {
 		"left": [Vector2(430, 1210)], 
 		"center": [Vector2(1120, 1220)],
 		"right": [Vector2(1730, 1130)],
 		}},
-	7: {"scale": 0.5, "alpha": 1.0, "dark": 0.8, "poss": {
+	7: {"scale": 0.5, "alpha": 1.0, "dark": 0.35, "poss": {
 		"left": [Vector2(430, 1210)], 
 		"center": [Vector2(1120, 1220)],
 		"right": [Vector2(1730, 1130)],
 		}},
-	8: {"scale": 0.62, "alpha": 1.0, "dark": 0.9, "poss": {
+	8: {"scale": 0.62, "alpha": 1.0, "dark": 0.5, "poss": {
 		"left": [Vector2(430, 1210)], 
 		"center": [Vector2(1120, 1220)],
 		"right": [Vector2(1730, 1130)],
 		}},
-	9: {"scale": 0.78, "alpha": 1.0, "dark": 0.95, "poss": {
-		"left": [Vector2(420, 1200)], 
+	9: {"scale": 0.78, "alpha": 1.0, "dark": 0.75, "poss": {
+		"left": [Vector2(420, 1200)],
 		"center": [Vector2(960, 1200)],
 		"right": [Vector2(1500, 1200)],
 		}},
@@ -132,9 +132,10 @@ func update_progress_pos():
 	modulate = Color(
 		properties_from_step[step]["dark"] * 1.0, 
 		properties_from_step[step]["dark"] * 1.0, 
-		properties_from_step[step]["dark"] * 1.0, 
+		properties_from_step[step]["dark"] * 1.0,
 		properties_from_step[step]["alpha"] * 1.0
 		)
+	print(properties_from_step[step]["dark"] * 1.0)
 	if debug:
 		print("i make a pas at step %s" % step)
 		print(get_global_position())
