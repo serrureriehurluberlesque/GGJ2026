@@ -19,6 +19,8 @@ var is_tweening = false
 var introed = false
 
 func _ready() -> void:
+	$menu_25.show()
+	
 	if DEBUG:
 		Engine.time_scale = 2.0
 	$Monsters.debug = DEBUG
@@ -30,6 +32,9 @@ func intro() -> void:
 	$menu_25.hide()
 	$PointLight2D.enabled = true
 	await get_tree().create_timer(2.0).timeout
+	$AnimationPlayer.play("intro")
+
+func intro_second_part() -> void:
 	camera_trans(CAMERA_DOWN)
 	await $Camera/TransTimer.timeout
 	await get_tree().create_timer(2.0).timeout
@@ -37,6 +42,7 @@ func intro() -> void:
 	await $Camera/TransTimer.timeout
 	introed = true
 	$Monsters.start()
+	$Monsters.update_knsea(knsea)
 
 func _input(event):
 	if not introed:
