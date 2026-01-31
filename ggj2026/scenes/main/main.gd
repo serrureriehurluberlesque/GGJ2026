@@ -23,10 +23,12 @@ func _input(event):
 		if event.is_action_pressed("ui_down"):
 			camera_trans(CAMERA_DOWN)
 			camera_pos = "down"
+			$Monsters.update_knsea(false)
 	else:
 		if event.is_action_pressed("ui_up"):
 			camera_trans(CAMERA_UP)
 			camera_pos = "up"
+			$Monsters.update_knsea(true)
 		elif event.is_action_pressed("activate"):
 			# Switch light
 			light_on = !light_on
