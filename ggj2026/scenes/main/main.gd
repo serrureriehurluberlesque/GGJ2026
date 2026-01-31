@@ -38,7 +38,10 @@ func intro_second_part() -> void:
 	camera_trans(CAMERA_DOWN)
 	await $Camera/TransTimer.timeout
 	await get_tree().create_timer(2.0).timeout
+	$AudioStreamPlayer.stop()
+	$Sound1.play()
 	camera_trans(CAMERA_UP)
+	camera_pos = "up"
 	await $Camera/TransTimer.timeout
 	introed = true
 	$Monsters.start()
@@ -78,7 +81,7 @@ func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
 	camera_pos = "trans"
 	$Camera/TransTimer.start()
-		
+
 func send_visibility_to_monsters():
 	var new_knsea = light_on and camera_pos != "down" and not mask_on
 	if new_knsea != knsea:

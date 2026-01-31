@@ -194,6 +194,11 @@ offset_right = 1920.0
 offset_bottom = 2160.0
 texture = ExtResource("2_ow5a4")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2105356055]
+autoplay = true
+
+[node name="Sound1" type="AudioStreamPlayer" parent="." unique_id=1090949677]
+
 [connection signal="mask_chosen" from="Masks/mask_3" to="." method="_on_mask_chosen"]
 [connection signal="mask_chosen" from="Masks/mask_2" to="." method="_on_mask_chosen"]
 [connection signal="mask_chosen" from="Masks/mask_1" to="." method="_on_mask_chosen"]
