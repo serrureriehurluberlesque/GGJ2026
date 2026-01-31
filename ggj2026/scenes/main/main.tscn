@@ -9,18 +9,6 @@
 
 [sub_resource type="Animation" id="Animation_6q06x"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/MaskOn:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_hujxm"]
 resource_name = "mask_off"
@@ -35,6 +23,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 1080)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"i_can_see"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ow5a4"]
@@ -105,7 +107,7 @@ texture = ExtResource("5_6q06x")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
 libraries/ = SubResource("AnimationLibrary_hujxm")
 
-[connection signal="mask_on" from="mask_3" to="." method="_on_mask_on"]
-[connection signal="mask_on" from="mask_2" to="." method="_on_mask_on"]
-[connection signal="mask_on" from="mask_1" to="." method="_on_mask_on"]
+[connection signal="mask_chosen" from="mask_3" to="." method="_on_mask_chosen"]
+[connection signal="mask_chosen" from="mask_2" to="." method="_on_mask_chosen"]
+[connection signal="mask_chosen" from="mask_1" to="." method="_on_mask_chosen"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]
