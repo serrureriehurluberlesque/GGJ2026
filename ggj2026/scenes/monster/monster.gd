@@ -26,17 +26,17 @@ var params_sides = {
 }
 
 var ypos_from_step = {
-	0: 0.36,
-	1: 0.37,
-	2: 0.38,
-	3: 0.39,
-	4: 0.4,
-	5: 0.41,
-	6: 0.43,
-	7: 0.45,
-	8: 0.48,
+	0: 0.27,
+	1: 0.28,
+	2: 0.30,
+	3: 0.32,
+	4: 0.34,
+	5: 0.37,
+	6: 0.40,
+	7: 0.43,
+	8: 0.46,
 	9: 0.5,
-	10: 0.6,
+	10: 0.55,
 }
 
 static func new_monster(type: int, side: String, total_time: float, knsea: bool, mask: int, debug: bool) -> Monster:
@@ -62,16 +62,16 @@ func _ready():
 
 func set_mask_left():
 	$Sprite2D.texture = load("res://scenes/monster/assets/mask_%d_side.png" % type)
-	set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
+	$Sprite2D.set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
 
 func set_mask_center():
 	$Sprite2D.texture = load("res://scenes/monster/assets/mask_%d_front.png" % type)
-	set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
+	$Sprite2D.set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
 
 func set_mask_right():
 	$Sprite2D.texture = load("res://scenes/monster/assets/mask_%d_side.png" % type)
 	$Sprite2D.flip_h = true
-	set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
+	$Sprite2D.set_position(Vector2(0, $Sprite2D.texture.get_height() / -2.0))
 
 func _physics_process(delta):
 	if not knsea:
@@ -96,11 +96,14 @@ func _physics_process(delta):
 		show()
 
 func update_progress_pos():
-	set_global_position(params_sides[side]["pos"] + Vector2((randf() - 0.5) * 200.0, 2160 * ypos_from_step[step]))
-	var scale_factor = 1.0 / ((1 - progress) * 10.0 + 1) * progress
+	set_global_position(params_sides[side]["pos"] + Vector2((randf() - 0.5) * 300.0, 2160 * ypos_from_step[step]))
+	var scale_factor = 2.0 / ((1 - progress) * 20.0 + 1) * progress
 	set_scale(Vector2(scale_factor, scale_factor))
 	z_index = step
 	var dbdelta = -5 * (12.0 - step)
+	if debug:
+		print("i make a pas at step %s" % step)
+		print(get_global_position())
 	$AudioStreamPlayer2D.volume_db = dbdelta
 	$AudioStreamPlayer2D.play()
 
