@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://dc7j5aw1nf2kx" path="res://scenes/main/lantern.gd" id="8_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://bxhgi4mkmqvhw" path="res://scenes/main/assets/neutral_point_light.webp" id="13_th5th"]
 [ext_resource type="Script" uid="uid://b8xpq7qr8r6st" path="res://scenes/main/point_light_2d.gd" id="14_7smn1"]
+[ext_resource type="AudioStream" uid="uid://csygubyi44isj" path="res://scenes/main/assets/sounds/mask breathing.wav" id="14_m4h2d"]
+[ext_resource type="AudioStream" uid="uid://dal5vvstoksxv" path="res://scenes/main/assets/sounds/mask on off.wav" id="15_p8abn"]
 [ext_resource type="Texture2D" uid="uid://6bim0ug7hygo" path="res://scenes/main/assets/titlescreen.png" id="15_raeie"]
 [ext_resource type="AudioStream" uid="uid://bjso30yfie0mi" path="res://scenes/main/assets/sounds/lamp loop.wav" id="16_ou6is"]
 [ext_resource type="AudioStream" uid="uid://dfa4rajufeti" path="res://scenes/main/assets/ambiance.ogg" id="17_nvumn"]
@@ -75,6 +77,34 @@ tracks/1/keys = {
 "method": &"i_can_see"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/MaskOnOff")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/MaskBreathing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ow5a4"]
 resource_name = "mask_on"
@@ -89,6 +119,34 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 2160), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/MaskOnOff")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/MaskBreathing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hujxm"]
@@ -191,6 +249,12 @@ texture = ExtResource("5_6q06x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=122311836]
 libraries/ = SubResource("AnimationLibrary_hujxm")
+
+[node name="MaskBreathing" type="AudioStreamPlayer" parent="AnimationPlayer" unique_id=906444968]
+stream = ExtResource("14_m4h2d")
+
+[node name="MaskOnOff" type="AudioStreamPlayer" parent="AnimationPlayer" unique_id=1676450640]
+stream = ExtResource("15_p8abn")
 
 [node name="AnimationPlayerIntro" type="AnimationPlayer" parent="." unique_id=501664215]
 libraries/ = SubResource("AnimationLibrary_hujxm")
