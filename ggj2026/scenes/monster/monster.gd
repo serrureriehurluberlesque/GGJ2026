@@ -37,7 +37,7 @@ var properties_from_step = {
 		"center": [Vector2(915, 795)],
 		"right": [Vector2(1790, 770)],
 		}},
-	3: {"scale": 0.14, "alpha": 0.5, "dark": 0.15, "poss": {
+	3: {"scale": 0.14, "alpha": 0.5, "dark": 0.07, "poss": {
 		"left": [Vector2(380, 775)], 
 		"center": [Vector2(915, 795)],
 		"right": [Vector2(1790, 770)],
@@ -87,7 +87,6 @@ static func new_monster(type: int, side: String, total_time: float, knsea: bool,
 	new_monster.mask = mask
 	new_monster.debug = debug
 	new_monster.speed = 1.0 / total_time
-	
 	for i in range(NBR_STEPS + 1):
 		new_monster.steps.append((i + randf()) / NBR_STEPS)
 	return new_monster
@@ -106,7 +105,7 @@ func set_mask_texture():
 	$AudioStreamPlayer2D.stream = load("res://scenes/monster/assets/sound_monster_%d.ogg" % type)
 
 func _physics_process(delta):
-	if step >= 4:
+	if step >= 3:
 		if not knsea and mask != type:
 			if $AudioStreamPlayer2D.stream_paused:
 				$AudioStreamPlayer2D.stream_paused = false
@@ -115,7 +114,7 @@ func _physics_process(delta):
 				$AudioStreamPlayer2D.stream_paused = true
 		if not knsea:
 			if mask == type:
-				progress_flee = min(1.0, progress_flee + delta * speed * 3.0)
+				progress_flee = min(1.0, progress_flee + delta / (speed * 100.0))
 				if progress_flee >= 1.0:
 					flee.emit(self)
 			else:
@@ -148,7 +147,7 @@ func update_progress_pos():
 		properties_from_step[step]["dark"] * 1.0 * dark_factor,
 		properties_from_step[step]["alpha"] * 1.0
 		)
-	if step >= 4 and not started_sound:
+	if step >= 3 and not started_sound:
 		started_sound = true
 		$AudioStreamPlayer2D.play()
 	var db =  -4 * (10.0 - step)
