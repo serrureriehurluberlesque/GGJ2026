@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bdqglaratclbu"]
+
+[ext_resource type="Texture2D" uid="uid://dyvli6wn5fcle" path="res://scenes/main/assets/Option.png" id="1_x8b0d"]
+[ext_resource type="Script" uid="uid://bojdsuxq2tbt3" path="res://scenes/main/choice.gd" id="2_8ypm4"]
+[ext_resource type="Texture2D" uid="uid://ch67wt34r8hdi" path="res://scenes/main/assets/Yes.png" id="2_ola3n"]
+[ext_resource type="Texture2D" uid="uid://d4ku4rm26ggq2" path="res://scenes/main/assets/No.png" id="3_8ypm4"]
+
+[node name="menu_26" type="TextureRect" unique_id=2106770301]
+z_index = 26
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_x8b0d")
+script = ExtResource("2_8ypm4")
+
+[node name="Yes" type="TextureButton" parent="." unique_id=336854920]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 615.0
+offset_right = 519.0
+offset_bottom = 957.0
+texture_normal = ExtResource("2_ola3n")
+
+[node name="No" type="TextureButton" parent="." unique_id=677528008]
+layout_mode = 0
+offset_left = 1310.0
+offset_top = 610.0
+offset_right = 1673.0
+offset_bottom = 952.0
+texture_normal = ExtResource("3_8ypm4")
+
+[connection signal="pressed" from="Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="No" to="." method="_on_no_pressed"]
