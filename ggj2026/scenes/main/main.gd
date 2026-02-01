@@ -61,6 +61,7 @@ func intro_second_part() -> void:
 	$AudioStreamPlayer.stop()
 	$Ambiance.play()
 	$Sound2.play()
+	await get_tree().create_timer(1.0).timeout
 	camera_trans(CAMERA_UP)
 	camera_pos = "up"
 	await $Camera/TransTimer.timeout
