@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://csygubyi44isj"
+path="res://.godot/imported/mask breathing.wav-9a07e799c0702d4a5a73b30de380aa6e.sample"
+
+[deps]
+
+source_file="res://scenes/main/assets/sounds/mask breathing.wav"
+dest_files=["res://.godot/imported/mask breathing.wav-9a07e799c0702d4a5a73b30de380aa6e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
