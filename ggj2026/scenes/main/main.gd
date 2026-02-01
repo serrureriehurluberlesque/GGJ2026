@@ -128,7 +128,8 @@ func switch_light(force=null):
 		light_on = !light_on
 	
 	%bg_light.modulate = Color("#fff") if light_on else Color("#535353")
-	$Deco/Buisson.modulate = Color("#fff") if light_on else Color("#3b3b3b")
+	$Background/bg_light/textures/trees_6.modulate = Color("#fff") if light_on else Color("828282ff")
+	$Deco/Buisson.modulate = Color("#fff") if light_on else Color("#535353")
 	%Light/LightSource.enabled = light_on
 	send_visibility_to_monsters()
 	

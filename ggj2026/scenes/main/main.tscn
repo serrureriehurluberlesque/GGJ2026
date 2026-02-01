@@ -498,6 +498,18 @@ texture = ExtResource("5_7smn1")
 z_index = 6
 texture = SubResource("CanvasTexture_7smn1")
 
+[node name="buisson_10" type="Sprite2D" parent="Background/bg_light/textures" unique_id=629509752]
+z_index = 10
+position = Vector2(781, -134)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("13_i7in8")
+
+[node name="buisson2_10" type="Sprite2D" parent="Background/bg_light/textures" unique_id=1081165499]
+z_index = 10
+position = Vector2(-146.99994, -102)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("13_i7in8")
+
 [node name="lantern" type="Sprite2D" parent="Background/bg_light/textures" unique_id=251024421]
 z_index = 13
 texture = ExtResource("6_a8run")
