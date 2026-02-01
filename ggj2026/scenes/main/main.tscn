@@ -417,7 +417,7 @@ polygon = PackedVector2Array(631, 124.30005, 631, 126.19995, 555.6, 140, 553, 14
 [node name="LanternHighlight" type="TextureRect" parent="Background/bg_light/textures/lantern" unique_id=691959412]
 unique_name_in_owner = true
 visible = false
-modulate = Color(1, 1, 1, 0.47843137)
+modulate = Color(1, 1, 1, 0.3529412)
 z_index = -1
 offset_left = 274.0
 offset_top = 79.0
