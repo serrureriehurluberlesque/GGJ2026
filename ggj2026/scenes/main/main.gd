@@ -16,7 +16,7 @@ var FLICKER_MIN = 10.0 # sec
 var FLICKER_MAX = 20.0 # sec
 
 # State variables
-var camera_pos = "up"
+var camera_pos = "down"
 var light_on = true
 var mask_on = 0
 var knsea = true
@@ -34,6 +34,7 @@ func _ready() -> void:
 	$Monsters.debug = DEBUG
 	
 	$Camera/MaskOn.show()
+	$Camera.position = CAMERA_DOWN
 	
 	$Camera/TransTimer.wait_time = TRANS_TIME
 	$Camera/MaskOn.position = Vector2(0.0, 2*HEIGHT)
@@ -49,14 +50,12 @@ func start():
 func intro() -> void:
 	$menu_25.hide()
 	switch_light(true)
-	await get_tree().create_timer(2.0).timeout
-	camera_trans(CAMERA_DOWN)
-	await $Camera/TransTimer.timeout
 	await get_tree().create_timer(1.0).timeout
 	$AnimationPlayer.play("intro")
 
 func intro_second_part() -> void:
 	$AudioStreamPlayer.stop()
+	$Ambiance.play()
 	$Sound2.play()
 	camera_trans(CAMERA_UP)
 	camera_pos = "up"

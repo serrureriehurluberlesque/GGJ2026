@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://hkvnwn3ayhgf" path="res://scenes/main/assets/sounds/lamp on.wav" id="17_r4lks"]
 [ext_resource type="AudioStream" uid="uid://cerm05w7iwxb3" path="res://scenes/main/assets/sounds/lamp flicker.wav" id="18_p8abn"]
 [ext_resource type="AudioStream" uid="uid://ci6354o6mhxck" path="res://scenes/main/assets/sounds/lamp off.wav" id="18_pg34l"]
+[ext_resource type="AudioStream" uid="uid://yqmxre1h0wru" path="res://scenes/main/assets/music.ogg" id="23_6llfj"]
 [ext_resource type="Texture2D" uid="uid://mtpvr7eyfigs" path="res://scenes/main/assets/anim_intro_mains.png" id="23_p8abn"]
 [ext_resource type="AudioStream" uid="uid://d204xvapmbwos" path="res://scenes/main/assets/chisel wood intro.wav" id="24_37hlw"]
 [ext_resource type="AudioStream" uid="uid://dno133hlbthry" path="res://scenes/main/assets/branch crack.wav" id="25_6llfj"]
@@ -461,11 +462,16 @@ stream = ExtResource("16_ou6is")
 unique_name_in_owner = true
 visible = false
 z_index = 25
+offset_top = 1080.0
 offset_right = 1920.0
-offset_bottom = 1080.0
+offset_bottom = 2160.0
 texture = ExtResource("15_raeie")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2105356055]
+stream = ExtResource("23_6llfj")
+autoplay = true
+
+[node name="Ambiance" type="AudioStreamPlayer" parent="." unique_id=1717252489]
 stream = ExtResource("17_nvumn")
 autoplay = true
 
