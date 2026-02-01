@@ -113,8 +113,8 @@ func switch_light(force=null):
 		#%Light/LampOn.play() # TODO: delay bien + transition
 		%Light/LampLoop.play()
 	else:
-		#%Light/LampLoop.stop() # TODO: delay bien
-		%Light/LampOff.play()
+		%Light/LampLoop.stop()
+		#%Light/LampOff.play() # TODO: delay bien
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
