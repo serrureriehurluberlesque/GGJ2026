@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/sound_monster_2.ogg-70e0741a83333024505dfbb9f
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
