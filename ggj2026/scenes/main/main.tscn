@@ -590,6 +590,7 @@ script = ExtResource("14_7smn1")
 stream = ExtResource("16_ou6is")
 
 [node name="FlickerTimer" type="Timer" parent="Light" unique_id=1703043842]
+one_shot = true
 
 [node name="menu_25" type="TextureRect" parent="." unique_id=2035129078]
 unique_name_in_owner = true

@@ -178,7 +178,10 @@ func _on_light_timer_timeout() -> void:
 	%Light/Timer.start()
 
 func _on_flicker_timer_timeout() -> void:
-	$AnimationPlayer.play("lamp_flicker")
+	if light_on:
+		$AnimationPlayer.play("lamp_flicker")
+	%Light/FlickerTimer.wait_time = randf_range(FLICKER_MIN, FLICKER_MAX)
+	%Light/FlickerTimer.start()
 
 
 func _process(delta: float) -> void:
