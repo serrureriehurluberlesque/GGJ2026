@@ -1,6 +1,6 @@
 extends Node
 
-var DEBUG = true
+var DEBUG = false
 
 # TODO: less hard-coded ?
 var WIDTH = 1920
@@ -174,10 +174,14 @@ func _on_flicker_timer_timeout() -> void:
 
 func _process(delta: float) -> void:
 	t += delta
-	if t > randf() * 20:
-		t -= 20.0
-		var listanim = ["yeux", "buisson"]
-		$AnimationPlayerDeco.play(listanim.pick_random())
+	if t > randf() * 15.0:
+		t -= 5 + 17.0 * randf() 
+		var listanim = ["yeux", "buisson", "yeux", "yeux", "buisson", "Sound3", "Sound4", "Sound5", "Sound6", "Sound7", "Sound8"]
+		var anim = listanim.pick_random()
+		if "Sound" in anim:
+			get_node(anim).play()
+		else:
+			$AnimationPlayerDeco.play(anim)
 
 # Lantern stuff (j'aurais dû faire une scène à part)
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
