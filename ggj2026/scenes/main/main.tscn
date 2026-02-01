@@ -150,7 +150,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1, 1.7),
+"times": PackedFloat32Array(1, 1.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [false],
@@ -181,7 +181,7 @@ tracks/2/path = NodePath("Background/bg_light:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 1, 1.7666667),
+"times": PackedFloat32Array(0.5, 1, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.3266795, 0.3266795, 0.32667947, 1), Color(1, 1, 1, 1)]
@@ -193,7 +193,7 @@ tracks/3/path = NodePath("Deco/Buisson:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 1, 1.7666667),
+"times": PackedFloat32Array(0.5, 1, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.3266795, 0.3266795, 0.32667947, 1), Color(1, 1, 1, 1)]
