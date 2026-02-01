@@ -6,5 +6,6 @@
 script = ExtResource("1_ur6ty")
 
 [node name="TimerNextMonster" type="Timer" parent="." unique_id=1410417245]
+one_shot = true
 
 [node name="Monsters" type="Node2D" parent="." unique_id=885822487]

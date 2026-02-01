@@ -1,6 +1,7 @@
 extends Node
 
 var DEBUG = true
+var SKIP = false
 
 # TODO: less hard-coded ?
 var WIDTH = 1920
@@ -28,11 +29,14 @@ func _ready() -> void:
 	
 	if DEBUG:
 		Engine.time_scale = 2.0
+		SKIP = true
 	$Monsters.debug = DEBUG
 	
 	$Camera/TransTimer.wait_time = TRANS_TIME
 	$Camera/MaskOn.position = Vector2(0.0, 2*HEIGHT)
 	
+
+func start():
 	%Light/Timer.wait_time = randf_range(LIGHT_OFF_MIN, LIGHT_OFF_MAX)
 	%Light/Timer.start()
 
@@ -53,14 +57,24 @@ func intro_second_part() -> void:
 	await $Camera/TransTimer.timeout
 	send_visibility_to_monsters()
 	introed = true
+	start()
 
 func _input(event):
 	if not menued:
 		if event.is_pressed():
-			intro()
 			menued = true
+			if SKIP:
+				first_inputed = true
+				introed = true
+				$Monsters.start()
+				$menu_25.hide()
+				%Light/LightSource.enabled = true
+				$AudioStreamPlayer.stop()
+				start()
+			else:
+				intro()
 		return
-	if not first_inputed and event.is_pressed():
+	if introed and not first_inputed and event.is_pressed():
 		$Monsters.start()
 		first_inputed = true
 	if introed:

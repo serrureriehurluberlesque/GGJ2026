@@ -19,6 +19,7 @@ var spawn_sides = ["left", "center", "right"]
 var next_monsters = []
 
 var monster
+var nbr_monster = 0
 
 var knsea:= true
 var mask:= 0
@@ -47,10 +48,11 @@ func start():
 	started = true
 	
 func next_monster():
+	nbr_monster += 1
+	if debug:
+		print("sstarting to spawn monster %s" % nbr_monster)
 	if next_monsters:
 		$TimerNextMonster.start(next_monsters.pop_front())
-	else:
-		win.emit()
 
 func spawn_monster():
 	if not knsea:
@@ -68,12 +70,19 @@ func spawn_monster():
 			var side = empty_side.pick_random()
 			var type = randi_range(1, 3)
 			var total_time = SPEED_MONSTER
+			if nbr_monster == 1:
+				total_time *= 3
+			else:
+				total_time - nbr_monster
 			var new_monster = Monster.new_monster(type, side, total_time, knsea, mask, debug)
 			$Monsters.add_child(new_monster)
 			new_monster.connect("flee", monster_flee)
 			new_monster.connect("goth_ya", goth_ya)
 			
-			next_monster()
+			if nbr_monster == 1:
+				return
+			else:
+				next_monster()
 		else:
 			$TimerNextMonster.start(2.0)
 	else:
@@ -95,6 +104,9 @@ func transmit_knseamask_monsters():
 		m.update_masks(mask)
 
 func monster_flee(m):
+	if nbr_monster == 1:
+		next_monster()
+	
 	m.queue_free()
 	
 	await get_tree().create_timer(2.0).timeout
