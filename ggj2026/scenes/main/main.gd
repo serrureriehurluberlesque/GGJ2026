@@ -117,9 +117,9 @@ func i_can_see():
 	
 func soft_switch_light():
 	if light_on:
-		$AnimationPlayer.play("light_off")
+		%Light/LightAnimations.play("light_off")
 	else:
-		$AnimationPlayer.play("light_on")
+		%Light/LightAnimations.play("light_on")
 	
 func switch_light(force=null):
 	if force != null:
@@ -174,13 +174,13 @@ func _on_monsters_win() -> void:
 
 
 func _on_light_timer_timeout() -> void:
-	$AnimationPlayer.play("light_off")
+	%Light/LightAnimations.play("light_off")
 	%Light/Timer.wait_time = randf_range(LIGHT_OFF_MIN, LIGHT_OFF_MAX)
 	%Light/Timer.start()
 
 func _on_flicker_timer_timeout() -> void:
 	if light_on:
-		$AnimationPlayer.play("lamp_flicker")
+		%Light/LightAnimations.play("lamp_flicker")
 	%Light/FlickerTimer.wait_time = randf_range(FLICKER_MIN, FLICKER_MAX)
 	%Light/FlickerTimer.start()
 

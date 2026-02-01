@@ -628,6 +628,10 @@ stream = ExtResource("16_ou6is")
 [node name="FlickerTimer" type="Timer" parent="Light" unique_id=1703043842]
 one_shot = true
 
+[node name="LightAnimations" type="AnimationPlayer" parent="Light" unique_id=1618442978]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_hujxm")
+
 [node name="menu_25" type="TextureRect" parent="." unique_id=2035129078]
 unique_name_in_owner = true
 visible = false
