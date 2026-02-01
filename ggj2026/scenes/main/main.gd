@@ -1,6 +1,6 @@
 extends Node
 
-var DEBUG = true
+var DEBUG = false
 
 # TODO: less hard-coded ?
 var WIDTH = 1920
