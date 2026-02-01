@@ -25,6 +25,8 @@ var introed = false
 var first_inputed = false
 var menued = false
 
+var t = 0.0
+
 func _ready() -> void:
 	$menu_25.show()
 	
@@ -172,3 +174,11 @@ func _on_lantern_light_toggled() -> void:
 func _on_flicker_timer_timeout() -> void:
 	print("FLICKER")
 	$AnimationPlayer.play("lamp_flicker")
+
+
+func _process(delta: float) -> void:
+	t += delta
+	if t > randf() * 20:
+		t -= 20.0
+		var listanim = ["yeux"]
+		$AnimationPlayerDeco.play(listanim.pick_random())
