@@ -1,6 +1,6 @@
 extends Node
 
-var DEBUG = false
+var DEBUG = true
 
 # TODO: less hard-coded ?
 var WIDTH = 1920
@@ -49,7 +49,7 @@ func start():
 	%Light/FlickerTimer.wait_time = randf_range(FLICKER_MIN, FLICKER_MAX)
 	%Light/FlickerTimer.start()
 	
-	$Camera/MaskOn.visible = true
+	$Camera/MaskOn.show()
 
 func intro() -> void:
 	$menu_25.hide()
@@ -167,11 +167,6 @@ func _on_light_timer_timeout() -> void:
 	%Light/Timer.wait_time = randf_range(LIGHT_OFF_MIN, LIGHT_OFF_MAX)
 	%Light/Timer.start()
 
-
-func _on_lantern_light_toggled() -> void:
-	soft_switch_light()  # TODO: only on ?
-
-
 func _on_flicker_timer_timeout() -> void:
 	print("FLICKER")
 	$AnimationPlayer.play("lamp_flicker")
@@ -183,3 +178,18 @@ func _process(delta: float) -> void:
 		t -= 20.0
 		var listanim = ["yeux", "buisson"]
 		$AnimationPlayerDeco.play(listanim.pick_random())
+
+# Lantern stuff (j'aurais dû faire une scène à part)
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("click"):
+		soft_switch_light()
+
+
+func _on_area_2d_mouse_entered() -> void:
+	%LanternHighlight.show()
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+
+func _on_area_2d_mouse_exited() -> void:
+	%LanternHighlight.hide()
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

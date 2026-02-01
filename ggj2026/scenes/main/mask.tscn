@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cyyf8jd0brp24" path="res://scenes/main/assets/mask_1_wood.png" id="1_1nqh6"]
 [ext_resource type="Script" uid="uid://bfqa8e3bd6jgs" path="res://mask.gd" id="1_sq1ky"]
+[ext_resource type="Texture2D" uid="uid://dy46y0vniyn03" path="res://scenes/main/assets/control/highlight_mask_1.png" id="3_54no3"]
 
 [sub_resource type="Animation" id="Animation_1nqh6"]
 tracks/0/type = "value"
@@ -70,5 +71,24 @@ polygon = PackedVector2Array(-74.7, -162, -97, -162, -97, -160, -91.5, -146.1, -
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_q6u5x")
 
+[node name="Highlight" type="TextureRect" parent="." unique_id=1213124990]
+visible = false
+modulate = Color(1, 1, 1, 0.3529412)
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -178.5
+offset_right = 173.5
+offset_bottom = 178.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_54no3")
+
 [connection signal="input_event" from="Sprite/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Sprite/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite/Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]
