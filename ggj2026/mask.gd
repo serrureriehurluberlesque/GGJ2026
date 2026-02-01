@@ -6,11 +6,11 @@ signal mask_chosen(type)
 
 func _ready():
 	%Sprite.texture = load("res://scenes/main/assets/mask_%d_wood.png" % type)
-	$Highlight.texture = load("res://scenes/main/assets/control/highlight_mask_%d.png" % type)
+	%Highlight.texture = load("res://scenes/main/assets/control/highlight_mask_%d.png" % type)
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Global.introed and event.is_action_pressed("click"):
-		$Highlight.hide()
+		#%Highlight.hide()
 		mask_chosen.emit(type)
 		
 func take_mask():
@@ -22,8 +22,8 @@ func put_mask_back():
 
 func _on_area_2d_mouse_entered() -> void:
 	if Global.introed:
-		$Highlight.show()
+		%Highlight.show()
 
 
 func _on_area_2d_mouse_exited() -> void:
-	$Highlight.hide()
+	%Highlight.hide()
