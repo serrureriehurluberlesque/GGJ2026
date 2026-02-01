@@ -7,6 +7,7 @@ func _ready() -> void:
 		Global.type = randi_range(1, 3)
 	if Global.type == -1:
 		%Jumpscare.texture = load("res://scenes/end/assets/Victory.png")
+		%Jumpscare/win.play()
 	else:
 		if Global.gentil:
 			%Jumpscare.texture = load("res://scenes/end/assets/Jumpscare_gentil_%d.png" % Global.type)
