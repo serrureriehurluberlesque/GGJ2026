@@ -88,10 +88,10 @@ func _input(event):
 		first_inputed = true
 	if introed:
 		if camera_pos == "up":
-			if event.is_action_pressed("ui_down"):
+			if event.is_action_pressed("ui_down") or _is_click_down(event):
 				camera_trans(CAMERA_DOWN)
 		else:
-			if event.is_action_pressed("ui_up"):
+			if event.is_action_pressed("ui_up") or _is_click_up(event):
 				camera_trans(CAMERA_UP)
 				camera_pos = "up"
 				send_visibility_to_monsters()
@@ -102,6 +102,12 @@ func _input(event):
 			# Remove mask
 			$AnimationPlayer.play("mask_off")
 			find_child("mask_%s" % mask_on).put_mask_back()
+			
+func _is_click_down(event):
+	return event is InputEventMouseButton and event.position.y > HEIGHT*0.75
+
+func _is_click_up(event):
+	return event is InputEventMouseButton and event.position.y < HEIGHT*0.25
 		
 func i_can_see():
 	mask_on = 0
