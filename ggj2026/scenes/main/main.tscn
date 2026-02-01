@@ -36,6 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://bvnh5cwtoqp6q" path="res://scenes/main/assets/sounds/sound8.wav" id="33_r1bmu"]
 [ext_resource type="AudioStream" uid="uid://bb16rrvuke1g1" path="res://scenes/main/assets/sounds/sound9.wav" id="34_6w6mm"]
 [ext_resource type="AudioStream" uid="uid://k07jwdseo1xp" path="res://scenes/main/assets/sounds/sound10.wav" id="35_os81g"]
+[ext_resource type="PackedScene" uid="uid://bdqglaratclbu" path="res://scenes/main/choice.tscn" id="37_os81g"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7smn1"]
 diffuse_texture = ExtResource("6_raeie")
@@ -701,6 +702,11 @@ position = Vector2(861, 2447)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("23_p8abn")
 
+[node name="menu_26" parent="." unique_id=2106770301 instance=ExtResource("37_os81g")]
+visible = false
+offset_top = 1080.0
+offset_bottom = 2160.0
+
 [connection signal="input_event" from="Background/bg_light/textures/lantern/Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Background/bg_light/textures/lantern/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Background/bg_light/textures/lantern/Area2D" to="." method="_on_area_2d_mouse_exited"]
@@ -712,3 +718,4 @@ texture = ExtResource("23_p8abn")
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]
 [connection signal="timeout" from="Light/Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="timeout" from="Light/FlickerTimer" to="." method="_on_flicker_timer_timeout"]
+[connection signal="chosen" from="menu_26" to="." method="_on_menu_26_chosen"]

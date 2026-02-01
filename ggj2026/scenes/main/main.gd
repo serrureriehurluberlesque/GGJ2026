@@ -28,6 +28,7 @@ var menued = false
 var t = 0.0
 
 func _ready() -> void:
+
 	$menu_25.show()
 	
 	if DEBUG:
@@ -73,7 +74,6 @@ func intro_second_part() -> void:
 func _input(event):
 	if not menued:
 		if event.is_pressed():
-			menued = true
 			if Global.SKIP:
 				first_inputed = true
 				introed = true
@@ -83,7 +83,8 @@ func _input(event):
 				$AudioStreamPlayer.stop()
 				start()
 			else:
-				intro()
+				#intro()
+				$menu_26.show()
 		return
 	if introed and not first_inputed and event.is_pressed():
 		$Monsters.start()
@@ -213,3 +214,9 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	%LanternHighlight.hide()
+
+
+func _on_menu_26_chosen() -> void:
+	menued = true
+	$menu_26.hide()
+	intro()
