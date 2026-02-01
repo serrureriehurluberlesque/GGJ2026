@@ -27,12 +27,15 @@
 [ext_resource type="AudioStream" uid="uid://yqmxre1h0wru" path="res://scenes/main/assets/music.ogg" id="23_6llfj"]
 [ext_resource type="Texture2D" uid="uid://mtpvr7eyfigs" path="res://scenes/main/assets/anim_intro_mains.png" id="23_p8abn"]
 [ext_resource type="AudioStream" uid="uid://ltcd3v2o82s0" path="res://scenes/main/assets/chisel wood intro.wav" id="24_37hlw"]
+[ext_resource type="AudioStream" uid="uid://dpldkhlxlom3x" path="res://scenes/main/assets/sounds/branch.wav" id="27_ii537"]
 [ext_resource type="AudioStream" uid="uid://dx4jmf62dsaan" path="res://scenes/main/assets/sounds/sound3.wav" id="28_ii537"]
 [ext_resource type="AudioStream" uid="uid://c6w6ai81yigyd" path="res://scenes/main/assets/sounds/sound4.wav" id="29_rofvo"]
 [ext_resource type="AudioStream" uid="uid://ddcgv5vpkjtfi" path="res://scenes/main/assets/sounds/sound5.wav" id="30_tbnf8"]
 [ext_resource type="AudioStream" uid="uid://bc4de1jq7ts2v" path="res://scenes/main/assets/sounds/sound6.wav" id="31_r1bmu"]
-[ext_resource type="AudioStream" uid="uid://qufpdvt8g4p6" path="res://scenes/main/assets/sounds/sound7.wav" id="32_tbnf8"]
-[ext_resource type="AudioStream" uid="uid://yk7iwgc6dx8p" path="res://scenes/main/assets/sounds/sound8.wav" id="33_r1bmu"]
+[ext_resource type="AudioStream" uid="uid://bn6gg5viu51db" path="res://scenes/main/assets/sounds/sound7.wav" id="32_tbnf8"]
+[ext_resource type="AudioStream" uid="uid://bvnh5cwtoqp6q" path="res://scenes/main/assets/sounds/sound8.wav" id="33_r1bmu"]
+[ext_resource type="AudioStream" uid="uid://bb16rrvuke1g1" path="res://scenes/main/assets/sounds/sound9.wav" id="34_6w6mm"]
+[ext_resource type="AudioStream" uid="uid://k07jwdseo1xp" path="res://scenes/main/assets/sounds/sound10.wav" id="35_os81g"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7smn1"]
 diffuse_texture = ExtResource("6_raeie")
@@ -653,7 +656,7 @@ autoplay = true
 stream = ExtResource("24_37hlw")
 
 [node name="Sound2" type="AudioStreamPlayer" parent="." unique_id=749459379]
-stream = ExtResource("33_r1bmu")
+stream = ExtResource("27_ii537")
 
 [node name="Sound3" type="AudioStreamPlayer" parent="." unique_id=459076322]
 stream = ExtResource("28_ii537")
@@ -669,12 +672,15 @@ stream = ExtResource("31_r1bmu")
 
 [node name="Sound7" type="AudioStreamPlayer" parent="." unique_id=378210375]
 stream = ExtResource("32_tbnf8")
-volume_db = -12.0
 
 [node name="Sound8" type="AudioStreamPlayer" parent="." unique_id=1935755630]
 stream = ExtResource("33_r1bmu")
-volume_db = -14.0
-pitch_scale = 0.8
+
+[node name="Sound9" type="AudioStreamPlayer" parent="." unique_id=2089831882]
+stream = ExtResource("34_6w6mm")
+
+[node name="Sound10" type="AudioStreamPlayer" parent="." unique_id=1107517515]
+stream = ExtResource("35_os81g")
 
 [node name="Hands_20" type="Node2D" parent="." unique_id=1458528297]
 z_index = 20
