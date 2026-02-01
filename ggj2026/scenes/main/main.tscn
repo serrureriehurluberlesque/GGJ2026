@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://bjso30yfie0mi" path="res://scenes/main/assets/sounds/lamp loop.wav" id="16_ou6is"]
 [ext_resource type="AudioStream" uid="uid://dfa4rajufeti" path="res://scenes/main/assets/ambiance.ogg" id="17_nvumn"]
 [ext_resource type="AudioStream" uid="uid://hkvnwn3ayhgf" path="res://scenes/main/assets/sounds/lamp on.wav" id="17_r4lks"]
+[ext_resource type="AudioStream" uid="uid://cerm05w7iwxb3" path="res://scenes/main/assets/sounds/lamp flicker.wav" id="18_p8abn"]
 [ext_resource type="AudioStream" uid="uid://ci6354o6mhxck" path="res://scenes/main/assets/sounds/lamp off.wav" id="18_pg34l"]
 [ext_resource type="Texture2D" uid="uid://mtpvr7eyfigs" path="res://scenes/main/assets/anim_intro_mains.png" id="23_p8abn"]
 
@@ -96,6 +97,105 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(861, 2447), Vector2(778, 2303), Vector2(1055, 2030), Vector2(804, 2253), Vector2(1061, 2028), Vector2(861, 2447)]
+}
+
+[sub_resource type="Animation" id="Animation_s17dp"]
+resource_name = "lamp_flicker"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [null],
+"method": &"switch_light"
+}, {
+"args": [null],
+"method": &"switch_light"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/LampFlicker")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_m4h2d"]
+resource_name = "light_off"
+length = 1.3
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/LampOff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"switch_light"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_p8abn"]
+resource_name = "light_on"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/LampOn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"switch_light"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_hujxm"]
@@ -202,6 +302,9 @@ tracks/2/keys = {
 _data = {
 &"RESET": SubResource("Animation_6q06x"),
 &"intro": SubResource("Animation_7smn1"),
+&"lamp_flicker": SubResource("Animation_s17dp"),
+&"light_off": SubResource("Animation_m4h2d"),
+&"light_on": SubResource("Animation_p8abn"),
 &"mask_off": SubResource("Animation_hujxm"),
 &"mask_on": SubResource("Animation_ow5a4")
 }
@@ -306,6 +409,15 @@ stream = ExtResource("14_m4h2d")
 [node name="MaskOnOff" type="AudioStreamPlayer" parent="AnimationPlayer" unique_id=1676450640]
 stream = ExtResource("15_p8abn")
 
+[node name="LampOn" type="AudioStreamPlayer" parent="AnimationPlayer" unique_id=1864397297]
+stream = ExtResource("17_r4lks")
+
+[node name="LampOff" type="AudioStreamPlayer" parent="AnimationPlayer" unique_id=2054902541]
+stream = ExtResource("18_pg34l")
+
+[node name="LampFlicker" type="AudioStreamPlayer" parent="AnimationPlayer" unique_id=424153007]
+stream = ExtResource("18_p8abn")
+
 [node name="AnimationPlayerIntro" type="AnimationPlayer" parent="." unique_id=501664215]
 libraries/ = SubResource("AnimationLibrary_hujxm")
 
@@ -324,11 +436,7 @@ script = ExtResource("14_7smn1")
 [node name="LampLoop" type="AudioStreamPlayer" parent="Light" unique_id=581632221]
 stream = ExtResource("16_ou6is")
 
-[node name="LampOn" type="AudioStreamPlayer" parent="Light" unique_id=1864397297]
-stream = ExtResource("17_r4lks")
-
-[node name="LampOff" type="AudioStreamPlayer" parent="Light" unique_id=2054902541]
-stream = ExtResource("18_pg34l")
+[node name="FlickerTimer" type="Timer" parent="Light" unique_id=1703043842]
 
 [node name="menu_25" type="TextureRect" parent="." unique_id=2035129078]
 unique_name_in_owner = true
@@ -360,3 +468,4 @@ texture = ExtResource("23_p8abn")
 [connection signal="gotcha" from="Monsters" to="." method="_on_monsters_gotcha"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]
 [connection signal="timeout" from="Light/Timer" to="." method="_on_light_timer_timeout"]
+[connection signal="timeout" from="Light/FlickerTimer" to="." method="_on_flicker_timer_timeout"]

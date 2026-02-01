@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cerm05w7iwxb3"
+path="res://.godot/imported/lamp flicker.wav-a5202ae3b1666a441dfba31802745f7a.sample"
+
+[deps]
+
+source_file="res://scenes/main/assets/sounds/lamp flicker.wav"
+dest_files=["res://.godot/imported/lamp flicker.wav-a5202ae3b1666a441dfba31802745f7a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
