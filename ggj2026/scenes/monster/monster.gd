@@ -19,43 +19,45 @@ var speed:= 0.05
 var progress_flee:= 0.0
 var step:= 0
 
+var started_sound := false
+
 var properties_from_step = {
 	0: {"scale": 0.1, "alpha": 0.2, "dark": 0.00, "poss": {
 		"left": [Vector2(110, 690)], 
 		"center": [Vector2(1060, 790)],
 		"right": [Vector2(1660, 690)],
 		}},
-	1: {"scale": 0.12, "alpha": 0.35, "dark": 0.0, "poss": {
+	1: {"scale": 0.11, "alpha": 0.35, "dark": 0.0, "poss": {
 		"left": [Vector2(110, 690)], 
 		"center": [Vector2(1060, 790)],
 		"right": [Vector2(1660, 690)],
 		}},
-	2: {"scale": 0.15, "alpha": 1.0, "dark": 0.05, "poss": {
+	2: {"scale": 0.12, "alpha": 0.5, "dark": 0.05, "poss": {
 		"left": [Vector2(380, 775)], 
 		"center": [Vector2(915, 795)],
 		"right": [Vector2(1790, 770)],
 		}},
-	3: {"scale": 0.19, "alpha": 1.0, "dark": 0.15, "poss": {
+	3: {"scale": 0.14, "alpha": 0.5, "dark": 0.15, "poss": {
 		"left": [Vector2(380, 775)], 
 		"center": [Vector2(915, 795)],
 		"right": [Vector2(1790, 770)],
 		}},
-	4: {"scale": 0.25, "alpha": 1.0, "dark": 0.25, "poss": {
+	4: {"scale": 0.2, "alpha": 1.0, "dark": 0.35, "poss": {
 		"left": [Vector2(380, 905)], 
 		"center": [Vector2(975, 1010)],
 		"right": [Vector2(1425, 965)],
 		}},
-	5: {"scale": 0.31, "alpha": 1.0, "dark": 0.35, "poss": {
+	5: {"scale": 0.27, "alpha": 1.0, "dark": 0.45, "poss": {
 		"left": [Vector2(380, 905)], 
 		"center": [Vector2(975, 1010)],
 		"right": [Vector2(1425, 965)],
 		}},
-	6: {"scale": 0.39, "alpha": 1.0, "dark": 0.45, "poss": {
+	6: {"scale": 0.35, "alpha": 1.0, "dark": 0.55, "poss": {
 		"left": [Vector2(430, 1210)], 
 		"center": [Vector2(1120, 1220)],
 		"right": [Vector2(1730, 1130)],
 		}},
-	7: {"scale": 0.5, "alpha": 1.0, "dark": 0.55, "poss": {
+	7: {"scale": 0.5, "alpha": 1.0, "dark": 0.6, "poss": {
 		"left": [Vector2(430, 1210)], 
 		"center": [Vector2(1120, 1220)],
 		"right": [Vector2(1730, 1130)],
@@ -95,8 +97,6 @@ func _ready():
 	
 	update_progress_pos()
 	
-	$AudioStreamPlayer2D.play()
-	
 	if debug:
 		print("Raaarg, i'm a monster at %s" % get_global_position())
 		
@@ -106,25 +106,31 @@ func set_mask_texture():
 	$AudioStreamPlayer2D.stream = load("res://scenes/monster/assets/sound_monster_%d.ogg" % type)
 
 func _physics_process(delta):
-	if not knsea and mask != type:
-		if $AudioStreamPlayer2D.stream_paused:
-			$AudioStreamPlayer2D.stream_paused = false
-	else:
-		if not $AudioStreamPlayer2D.stream_paused:
-			$AudioStreamPlayer2D.stream_paused = true
-	if not knsea:
-		if mask == type:
-			progress_flee = min(1.0, progress_flee + delta * speed * 3.0)
-			if progress_flee >= 1.0:
-				flee.emit(self)
+	if step >= 4:
+		if not knsea and mask != type:
+			if $AudioStreamPlayer2D.stream_paused:
+				$AudioStreamPlayer2D.stream_paused = false
 		else:
-			progress = min(1.0, progress + delta * speed)
+			if not $AudioStreamPlayer2D.stream_paused:
+				$AudioStreamPlayer2D.stream_paused = true
+		if not knsea:
+			if mask == type:
+				progress_flee = min(1.0, progress_flee + delta * speed * 3.0)
+				if progress_flee >= 1.0:
+					flee.emit(self)
+			else:
+				progress = min(1.0, progress + delta * speed)
 
-			if progress >= 1.0:
-				goth_ya.emit(type)
-			elif progress > steps[step]:
-				step += 1
-				update_progress_pos()
+				if progress >= 1.0:
+					goth_ya.emit(type)
+				elif progress > steps[step]:
+					step += 1
+					update_progress_pos()
+	else:
+		progress = min(1.0, progress + delta * speed)
+		if progress > steps[step]:
+			step += 1
+			update_progress_pos()
 
 func update_progress_pos():
 	set_global_position(properties_from_step[step]["poss"][side][0])
@@ -142,13 +148,16 @@ func update_progress_pos():
 		properties_from_step[step]["dark"] * 1.0 * dark_factor,
 		properties_from_step[step]["alpha"] * 1.0
 		)
+	if step >= 4 and not started_sound:
+		started_sound = true
+		$AudioStreamPlayer2D.play()
+	var db =  -4 * (10.0 - step)
+	if type == 3:
+		db += 6
+	$AudioStreamPlayer2D.volume_db = db
 	if debug:
 		print("i make a pas at step %s" % step)
 		print(get_global_position())
-	
-	var dbdelta = -5 * (12.0 - step)
-	$AudioStreamPlayer2D.volume_db = dbdelta
-	$AudioStreamPlayer2D.play()
 
 func update_knsea(k):
 	knsea = k
