@@ -613,6 +613,7 @@ texture = ExtResource("23_p8abn")
 [connection signal="mask_chosen" from="Background/bg_light/Masks/mask_2" to="." method="_on_mask_chosen"]
 [connection signal="mask_chosen" from="Background/bg_light/Masks/mask_1" to="." method="_on_mask_chosen"]
 [connection signal="gotcha" from="Monsters" to="." method="_on_monsters_gotcha"]
+[connection signal="win" from="Monsters" to="." method="_on_monsters_win"]
 [connection signal="timeout" from="Camera/TransTimer" to="." method="_on_trans_timer_timeout"]
 [connection signal="timeout" from="Light/Timer" to="." method="_on_light_timer_timeout"]
 [connection signal="timeout" from="Light/FlickerTimer" to="." method="_on_flicker_timer_timeout"]

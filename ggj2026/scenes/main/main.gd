@@ -167,6 +167,10 @@ func _on_monsters_gotcha(type: int) -> void:
 	Global.type = type
 	get_tree().change_scene_to_file("res://scenes/end/end.tscn")
 
+func _on_monsters_win() -> void:
+	Global.type = -1
+	get_tree().change_scene_to_file("res://scenes/end/end.tscn")
+
 
 func _on_light_timer_timeout() -> void:
 	$AnimationPlayer.play("light_off")

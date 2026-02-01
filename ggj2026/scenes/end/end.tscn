@@ -21,7 +21,7 @@ one_shot = true
 
 [node name="WAAAH" type="AudioStreamPlayer" parent="Jumpscare" unique_id=1077891309]
 stream = ExtResource("2_p1qr3")
-volume_db = -20.0
+volume_db = -15.0
 
 [node name="GameOver" type="TextureRect" parent="." unique_id=1469658756]
 unique_name_in_owner = true
