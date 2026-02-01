@@ -19,6 +19,8 @@ var speed:= 0.05
 var progress_flee:= 0.0
 var step:= 0
 
+var t = 1.0
+
 var started_sound := false
 
 var properties_from_step = {
@@ -106,11 +108,25 @@ func set_mask_texture():
 
 func _physics_process(delta):
 	if step >= 3:
+		t += delta
 		if not knsea and mask != type:
 			if $AudioStreamPlayer2D.stream_paused:
+				t += delta * randf() * 0.5
+			else:
+				t -= delta * randf() * 0.5
+		else:
+			if $AudioStreamPlayer2D.stream_paused:
+				t -= delta * randf() * 0.5
+			else:
+				t += delta * randf() * 0.5
+		
+		if $AudioStreamPlayer2D.stream_paused:
+			if t > 2.0 + randf():
+				t -= 2.5
 				$AudioStreamPlayer2D.stream_paused = false
 		else:
-			if not $AudioStreamPlayer2D.stream_paused:
+			if t > 2.0 + randf():
+				t -= 2.5
 				$AudioStreamPlayer2D.stream_paused = true
 		if not knsea:
 			if mask == type:
@@ -150,7 +166,7 @@ func update_progress_pos():
 	if step >= 3 and not started_sound:
 		started_sound = true
 		$AudioStreamPlayer2D.play()
-	var db =  -2 * (10.0 - step)
+	var db =  -2 * (8.0 - step)
 	if type == 3:
 		db += 6
 	$AudioStreamPlayer2D.volume_db = db
