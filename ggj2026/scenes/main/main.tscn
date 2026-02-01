@@ -665,10 +665,11 @@ stream = ExtResource("31_r1bmu")
 
 [node name="Sound7" type="AudioStreamPlayer" parent="." unique_id=378210375]
 stream = ExtResource("32_tbnf8")
+volume_db = -12.0
 
 [node name="Sound8" type="AudioStreamPlayer" parent="." unique_id=1935755630]
 stream = ExtResource("33_r1bmu")
-volume_db = -10.0
+volume_db = -14.0
 pitch_scale = 0.8
 
 [node name="Hands_20" type="Node2D" parent="." unique_id=1458528297]

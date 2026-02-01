@@ -186,7 +186,8 @@ func _on_flicker_timer_timeout() -> void:
 
 
 func _process(delta: float) -> void:
-	t += delta
+	if introed:
+		t += delta
 	if t > randf() * 15.0:
 		t -= 5 + 17.0 * randf() 
 		var listanim = ["yeux", "yeux2", "buisson", "Sound3", "Sound4", "Sound5", "Sound6", "Sound7", "Sound8"]
