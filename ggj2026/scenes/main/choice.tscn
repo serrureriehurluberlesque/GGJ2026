@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://bojdsuxq2tbt3" path="res://scenes/main/choice.gd" id="2_8ypm4"]
 [ext_resource type="Texture2D" uid="uid://ch67wt34r8hdi" path="res://scenes/main/assets/Yes.png" id="2_ola3n"]
 [ext_resource type="Texture2D" uid="uid://d4ku4rm26ggq2" path="res://scenes/main/assets/No.png" id="3_8ypm4"]
+[ext_resource type="Texture2D" uid="uid://dataiv2qkaye3" path="res://scenes/main/assets/yes_h.png" id="4_8ypm4"]
+[ext_resource type="Texture2D" uid="uid://cl3trtmc881f7" path="res://scenes/main/assets/no_h.png" id="6_vdhfi"]
+[ext_resource type="AudioStream" uid="uid://b3s11rxajrn5o" path="res://scenes/main/assets/sounds/crow.wav" id="7_uimn4"]
 
 [node name="menu_26" type="TextureRect" unique_id=2106770301]
 z_index = 26
@@ -19,6 +22,7 @@ offset_top = 615.0
 offset_right = 519.0
 offset_bottom = 957.0
 texture_normal = ExtResource("2_ola3n")
+texture_hover = ExtResource("4_8ypm4")
 
 [node name="No" type="TextureButton" parent="." unique_id=677528008]
 layout_mode = 0
@@ -27,6 +31,10 @@ offset_top = 610.0
 offset_right = 1673.0
 offset_bottom = 952.0
 texture_normal = ExtResource("3_8ypm4")
+texture_hover = ExtResource("6_vdhfi")
+
+[node name="StartSound" type="AudioStreamPlayer" parent="." unique_id=174149146]
+stream = ExtResource("7_uimn4")
 
 [connection signal="pressed" from="Yes" to="." method="_on_yes_pressed"]
 [connection signal="pressed" from="No" to="." method="_on_no_pressed"]
