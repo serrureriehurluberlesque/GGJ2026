@@ -114,7 +114,7 @@ func monster_flee(m):
 	
 	await get_tree().create_timer(2.0).timeout
 	
-	if not next_monster() and not $Monsters.get_children():
+	if not next_monsters and not $Monsters.get_children():
 		win.emit()
 
 func goth_ya(type):
