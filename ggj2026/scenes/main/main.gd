@@ -99,6 +99,12 @@ func i_can_see():
 	send_visibility_to_monsters()
 	$Monsters.update_masks(mask_on)
 	
+func soft_switch_light():
+	if light_on:
+		$AnimationPlayer.play("light_off")
+	else:
+		$AnimationPlayer.play("light_on")
+	
 func switch_light(force=null):
 	if force != null:
 		light_on = force
@@ -110,11 +116,9 @@ func switch_light(force=null):
 	send_visibility_to_monsters()
 	
 	if light_on:
-		#%Light/LampOn.play() # TODO: delay bien + transition
 		%Light/LampLoop.play()
 	else:
 		%Light/LampLoop.stop()
-		#%Light/LampOff.play() # TODO: delay bien
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
@@ -149,10 +153,9 @@ func _on_monsters_gotcha(type: int) -> void:
 
 
 func _on_light_timer_timeout() -> void:
-	switch_light(false)
+	$AnimationPlayer.play("light_off")
 	%Light/Timer.wait_time = randf_range(LIGHT_OFF_MIN, LIGHT_OFF_MAX)
 	%Light/Timer.start()
 
-
 func _on_lantern_light_toggled() -> void:
-	switch_light()  # TODO: only on ?
+	soft_switch_light()  # TODO: only on ?
