@@ -57,7 +57,7 @@ func intro() -> void:
 
 func intro_second_part() -> void:
 	$AudioStreamPlayer.stop()
-	$Sound1.play()
+	$Sound2.play()
 	camera_trans(CAMERA_UP)
 	camera_pos = "up"
 	await $Camera/TransTimer.timeout

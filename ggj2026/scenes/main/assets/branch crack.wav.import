@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dno133hlbthry"
+path="res://.godot/imported/branch crack.wav-0a06f8cb9407fa552be15ebec3f2b80d.sample"
+
+[deps]
+
+source_file="res://scenes/main/assets/branch crack.wav"
+dest_files=["res://.godot/imported/branch crack.wav-0a06f8cb9407fa552be15ebec3f2b80d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

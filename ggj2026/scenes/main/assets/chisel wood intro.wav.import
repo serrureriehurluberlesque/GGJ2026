@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d204xvapmbwos"
+path="res://.godot/imported/chisel wood intro.wav-c11524ae88ef283f72991f18bc92063d.sample"
+
+[deps]
+
+source_file="res://scenes/main/assets/chisel wood intro.wav"
+dest_files=["res://.godot/imported/chisel wood intro.wav-c11524ae88ef283f72991f18bc92063d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
