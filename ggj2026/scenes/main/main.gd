@@ -45,6 +45,8 @@ func start():
 	
 	%Light/FlickerTimer.wait_time = randf_range(FLICKER_MIN, FLICKER_MAX)
 	%Light/FlickerTimer.start()
+	
+	$Camera/MaskOn.visible = true
 
 func intro() -> void:
 	$menu_25.hide()
