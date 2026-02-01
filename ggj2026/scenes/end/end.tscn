@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqfphw1l03c2w" path="res://scenes/end/end.gd" id="1_8srqk"]
 [ext_resource type="Texture2D" uid="uid://vjxptq035rsv" path="res://scenes/end/assets/game_over.png" id="2_8srqk"]
+[ext_resource type="AudioStream" uid="uid://d24cltrtij2a8" path="res://scenes/end/assets/sounds/jumpscare.wav" id="2_p1qr3"]
 
 [node name="End" type="Node2D" unique_id=1640037484]
 script = ExtResource("1_8srqk")
@@ -16,6 +17,9 @@ scale = Vector2(0.93684465, 1.0299296)
 [node name="Timer" type="Timer" parent="Jumpscare" unique_id=1730176569]
 wait_time = 2.0
 one_shot = true
+
+[node name="WAAAH" type="AudioStreamPlayer" parent="Jumpscare" unique_id=1077891309]
+stream = ExtResource("2_p1qr3")
 
 [node name="GameOver" type="TextureRect" parent="." unique_id=1469658756]
 unique_name_in_owner = true

@@ -390,7 +390,7 @@ z_index = 12
 
 [node name="mask_3" parent="Background/bg_light/Masks" unique_id=1181649016 instance=ExtResource("5_yyfjg")]
 unique_name_in_owner = true
-position = Vector2(1145.0001, 1794)
+position = Vector2(1160, 1793.9999)
 rotation = 0.0062934435
 type = 3
 
