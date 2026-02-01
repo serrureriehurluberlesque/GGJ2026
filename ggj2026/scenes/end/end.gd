@@ -10,9 +10,12 @@ func _ready() -> void:
 	%Jumpscare/Timer.start()
 
 func _on_jumpscare_timer_timeout() -> void:
-	print("game over")
 	%GameOver.visible = true
+	$GameOver/AudioStreamPlayer.play()
 	t = 0
+	
+	await get_tree().create_timer(5.0).timeout
+	get_tree().change_scene_to_file("res://scenes/credits/credits.tscn")
 
 func _input(event):
 	if event.is_pressed() and t >= 1.0 and %GameOver.visible == true:

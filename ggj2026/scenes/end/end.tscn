@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqfphw1l03c2w" path="res://scenes/end/end.gd" id="1_8srqk"]
 [ext_resource type="Texture2D" uid="uid://vjxptq035rsv" path="res://scenes/end/assets/game_over.png" id="2_8srqk"]
 [ext_resource type="AudioStream" uid="uid://d24cltrtij2a8" path="res://scenes/end/assets/sounds/jumpscare.wav" id="2_p1qr3"]
+[ext_resource type="AudioStream" uid="uid://c4b3rfeayw212" path="res://scenes/end/assets/sounds/gameover.ogg" id="4_hqgb4"]
 
 [node name="End" type="Node2D" unique_id=1640037484]
 script = ExtResource("1_8srqk")
@@ -20,6 +21,7 @@ one_shot = true
 
 [node name="WAAAH" type="AudioStreamPlayer" parent="Jumpscare" unique_id=1077891309]
 stream = ExtResource("2_p1qr3")
+volume_db = -20.0
 
 [node name="GameOver" type="TextureRect" parent="." unique_id=1469658756]
 unique_name_in_owner = true
@@ -28,5 +30,8 @@ z_index = 100
 offset_right = 1913.0
 offset_bottom = 1070.0
 texture = ExtResource("2_8srqk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameOver" unique_id=1011212920]
+stream = ExtResource("4_hqgb4")
 
 [connection signal="timeout" from="Jumpscare/Timer" to="." method="_on_jumpscare_timer_timeout"]
