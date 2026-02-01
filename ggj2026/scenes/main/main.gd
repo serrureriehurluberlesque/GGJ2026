@@ -195,15 +195,15 @@ func _process(delta: float) -> void:
 
 # Lantern stuff (j'aurais dû faire une scène à part)
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("click"):
-		soft_switch_light()
+	if introed:
+		if event.is_action_pressed("click"):
+			soft_switch_light()
 
 
 func _on_area_2d_mouse_entered() -> void:
-	%LanternHighlight.show()
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	if introed:
+		%LanternHighlight.show()
 
 
 func _on_area_2d_mouse_exited() -> void:
 	%LanternHighlight.hide()
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
