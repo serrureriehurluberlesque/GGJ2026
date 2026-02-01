@@ -42,7 +42,7 @@ func start():
 
 func intro() -> void:
 	$menu_25.hide()
-	%Light/LightSource.enabled = true
+	switch_light(true)
 	await get_tree().create_timer(2.0).timeout
 	$AnimationPlayer.play("intro")
 
@@ -68,7 +68,7 @@ func _input(event):
 				introed = true
 				$Monsters.start()
 				$menu_25.hide()
-				%Light/LightSource.enabled = true
+				switch_light(true)
 				$AudioStreamPlayer.stop()
 				start()
 			else:
@@ -99,14 +99,22 @@ func i_can_see():
 	send_visibility_to_monsters()
 	$Monsters.update_masks(mask_on)
 	
-func switch_light(force_off=false):
-	if force_off and not light_on:
-		return
-
-	light_on = !light_on
+func switch_light(force=null):
+	if force != null:
+		light_on = force
+	else:
+		light_on = !light_on
+	
 	%bg_light.modulate = Color("#fff") if light_on else Color("#3b3b3b")
 	%Light/LightSource.enabled = light_on
 	send_visibility_to_monsters()
+	
+	if light_on:
+		#%Light/LampOn.play() # TODO: delay bien + transition
+		%Light/LampLoop.play()
+	else:
+		#%Light/LampLoop.stop() # TODO: delay bien
+		%Light/LampOff.play()
 		
 func camera_trans(new_pos):
 	create_tween().set_trans(Tween.TRANS_SINE).tween_property($Camera, "position", new_pos, TRANS_TIME)
@@ -141,10 +149,10 @@ func _on_monsters_gotcha(type: int) -> void:
 
 
 func _on_light_timer_timeout() -> void:
-	switch_light(true)
+	switch_light(false)
 	%Light/Timer.wait_time = randf_range(LIGHT_OFF_MIN, LIGHT_OFF_MAX)
 	%Light/Timer.start()
 
 
 func _on_lantern_light_toggled() -> void:
-	switch_light()
+	switch_light()  # TODO: only on ?

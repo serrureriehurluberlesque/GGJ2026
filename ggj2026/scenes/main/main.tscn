@@ -16,7 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://bxhgi4mkmqvhw" path="res://scenes/main/assets/neutral_point_light.webp" id="13_th5th"]
 [ext_resource type="Script" uid="uid://b8xpq7qr8r6st" path="res://scenes/main/point_light_2d.gd" id="14_7smn1"]
 [ext_resource type="Texture2D" uid="uid://6bim0ug7hygo" path="res://scenes/main/assets/titlescreen.png" id="15_raeie"]
+[ext_resource type="AudioStream" uid="uid://bjso30yfie0mi" path="res://scenes/main/assets/sounds/lamp loop.wav" id="16_ou6is"]
 [ext_resource type="AudioStream" uid="uid://dfa4rajufeti" path="res://scenes/main/assets/ambiance.ogg" id="17_nvumn"]
+[ext_resource type="AudioStream" uid="uid://hkvnwn3ayhgf" path="res://scenes/main/assets/sounds/lamp on.wav" id="17_r4lks"]
+[ext_resource type="AudioStream" uid="uid://ci6354o6mhxck" path="res://scenes/main/assets/sounds/lamp off.wav" id="18_pg34l"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7smn1"]
 diffuse_texture = ExtResource("6_raeie")
@@ -180,7 +183,6 @@ position = Vector2(960, 540)
 [node name="TransTimer" type="Timer" parent="Camera" unique_id=1312787439]
 
 [node name="MaskOn" type="Sprite2D" parent="Camera" unique_id=1420860986]
-visible = false
 light_mask = 0
 z_index = 15
 material = SubResource("ShaderMaterial_raeie")
@@ -204,6 +206,15 @@ texture = ExtResource("13_th5th")
 script = ExtResource("14_7smn1")
 
 [node name="Timer" type="Timer" parent="Light" unique_id=185221228]
+
+[node name="LampLoop" type="AudioStreamPlayer" parent="Light" unique_id=581632221]
+stream = ExtResource("16_ou6is")
+
+[node name="LampOn" type="AudioStreamPlayer" parent="Light" unique_id=1864397297]
+stream = ExtResource("17_r4lks")
+
+[node name="LampOff" type="AudioStreamPlayer" parent="Light" unique_id=2054902541]
+stream = ExtResource("18_pg34l")
 
 [node name="menu_25" type="TextureRect" parent="." unique_id=2035129078]
 unique_name_in_owner = true

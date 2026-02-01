@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bjso30yfie0mi"
+path="res://.godot/imported/lamp loop.wav-d55689bb5a63e1c8510a5e4d80020efc.sample"
+
+[deps]
+
+source_file="res://scenes/main/assets/sounds/lamp loop.wav"
+dest_files=["res://.godot/imported/lamp loop.wav-d55689bb5a63e1c8510a5e4d80020efc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
