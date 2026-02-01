@@ -1,6 +1,6 @@
 extends Node
 
-var DEBUG = false
+var DEBUG = true
 
 # TODO: less hard-coded ?
 var WIDTH = 1920
@@ -126,7 +126,7 @@ func switch_light(force=null):
 	else:
 		light_on = !light_on
 	
-	%bg_light.modulate = Color("#fff") if light_on else Color("#3b3b3b")
+	%bg_light.modulate = Color("#fff") if light_on else Color("#535353")
 	$Deco/Buisson.modulate = Color("#fff") if light_on else Color("#3b3b3b")
 	%Light/LightSource.enabled = light_on
 	send_visibility_to_monsters()
@@ -178,8 +178,10 @@ func _on_light_timer_timeout() -> void:
 	%Light/Timer.start()
 
 func _on_flicker_timer_timeout() -> void:
-	print("FLICKER")
-	$AnimationPlayer.play("lamp_flicker")
+	if light_on:
+		$AnimationPlayer.play("lamp_flicker")
+	%Light/FlickerTimer.wait_time = randf_range(FLICKER_MIN, FLICKER_MAX)
+	%Light/FlickerTimer.start()
 
 
 func _process(delta: float) -> void:
@@ -195,15 +197,15 @@ func _process(delta: float) -> void:
 
 # Lantern stuff (j'aurais dû faire une scène à part)
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("click"):
-		soft_switch_light()
+	if introed:
+		if event.is_action_pressed("click"):
+			soft_switch_light()
 
 
 func _on_area_2d_mouse_entered() -> void:
-	%LanternHighlight.show()
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	if introed:
+		%LanternHighlight.show()
 
 
 func _on_area_2d_mouse_exited() -> void:
 	%LanternHighlight.hide()
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

@@ -65,6 +65,18 @@ tracks/1/keys = {
 "update": 0,
 "values": []
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/bg_light:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_7smn1"]
 resource_name = "intro"
@@ -127,7 +139,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_s17dp"]
 resource_name = "lamp_flicker"
-length = 3.0
+length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -135,13 +147,13 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.7, 2),
+"times": PackedFloat32Array(1, 1.7),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [null],
+"args": [false],
 "method": &"switch_light"
 }, {
-"args": [null],
+"args": [true],
 "method": &"switch_light"
 }]
 }
@@ -158,6 +170,30 @@ tracks/1/keys = {
 "args": [0.0],
 "method": &"play"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/bg_light:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.7666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.3266795, 0.3266795, 0.32667947, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Deco/Buisson:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.7666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.3266795, 0.3266795, 0.32667947, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_m4h2d"]
@@ -590,6 +626,7 @@ script = ExtResource("14_7smn1")
 stream = ExtResource("16_ou6is")
 
 [node name="FlickerTimer" type="Timer" parent="Light" unique_id=1703043842]
+one_shot = true
 
 [node name="menu_25" type="TextureRect" parent="." unique_id=2035129078]
 unique_name_in_owner = true
