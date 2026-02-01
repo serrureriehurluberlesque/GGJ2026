@@ -150,7 +150,7 @@ func update_progress_pos():
 	if step >= 3 and not started_sound:
 		started_sound = true
 		$AudioStreamPlayer2D.play()
-	var db =  -4 * (10.0 - step)
+	var db =  -3 * (10.0 - step)
 	if type == 3:
 		db += 6
 	$AudioStreamPlayer2D.volume_db = db

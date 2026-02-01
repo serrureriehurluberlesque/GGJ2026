@@ -121,6 +121,7 @@ func switch_light(force=null):
 		light_on = !light_on
 	
 	%bg_light.modulate = Color("#fff") if light_on else Color("#3b3b3b")
+	$Deco/Buisson.modulate = Color("#fff") if light_on else Color("#3b3b3b")
 	%Light/LightSource.enabled = light_on
 	send_visibility_to_monsters()
 	
@@ -180,5 +181,5 @@ func _process(delta: float) -> void:
 	t += delta
 	if t > randf() * 20:
 		t -= 20.0
-		var listanim = ["yeux"]
+		var listanim = ["yeux", "buisson"]
 		$AnimationPlayerDeco.play(listanim.pick_random())
