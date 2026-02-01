@@ -1,6 +1,6 @@
 extends Node
 
-var DEBUG = false
+var DEBUG = true
 
 # TODO: less hard-coded ?
 var WIDTH = 1920
@@ -126,7 +126,7 @@ func switch_light(force=null):
 	else:
 		light_on = !light_on
 	
-	%bg_light.modulate = Color("#fff") if light_on else Color("#3b3b3b")
+	%bg_light.modulate = Color("#fff") if light_on else Color("#535353")
 	$Deco/Buisson.modulate = Color("#fff") if light_on else Color("#3b3b3b")
 	%Light/LightSource.enabled = light_on
 	send_visibility_to_monsters()
@@ -178,7 +178,6 @@ func _on_light_timer_timeout() -> void:
 	%Light/Timer.start()
 
 func _on_flicker_timer_timeout() -> void:
-	print("FLICKER")
 	$AnimationPlayer.play("lamp_flicker")
 
 
