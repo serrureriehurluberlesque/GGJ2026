@@ -52,7 +52,10 @@ func next_monster():
 	if debug:
 		print("sstarting to spawn monster %s" % nbr_monster)
 	if next_monsters:
-		$TimerNextMonster.start(next_monsters.pop_front())
+		if debug and nbr_monster == 1:
+			$TimerNextMonster.start(1.0)
+		else:
+			$TimerNextMonster.start(next_monsters.pop_front())
 
 func spawn_monster():
 	if not knsea:

@@ -95,14 +95,23 @@ func _ready():
 	
 	update_progress_pos()
 	
+	$AudioStreamPlayer2D.play()
+	
 	if debug:
 		print("Raaarg, i'm a monster at %s" % get_global_position())
 		
 func set_mask_texture():
 	$Sprite2D.texture = load("res://scenes/monster/assets/mask_%d_front.png" % type)
 	$Sprite2D.set_position(Vector2(50, -455))
+	$AudioStreamPlayer2D.stream = load("res://scenes/monster/assets/sound_monster_%d.ogg" % type)
 
 func _physics_process(delta):
+	if not knsea and mask != type:
+		if $AudioStreamPlayer2D.stream_paused:
+			$AudioStreamPlayer2D.stream_paused = false
+	else:
+		if not $AudioStreamPlayer2D.stream_paused:
+			$AudioStreamPlayer2D.stream_paused = true
 	if not knsea:
 		if mask == type:
 			progress_flee = min(1.0, progress_flee + delta * speed * 3.0)
@@ -110,7 +119,7 @@ func _physics_process(delta):
 				flee.emit(self)
 		else:
 			progress = min(1.0, progress + delta * speed)
-			
+
 			if progress >= 1.0:
 				goth_ya.emit(type)
 			elif progress > steps[step]:
