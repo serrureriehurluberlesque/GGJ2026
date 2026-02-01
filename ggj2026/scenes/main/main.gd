@@ -67,6 +67,7 @@ func intro_second_part() -> void:
 	await $Camera/TransTimer.timeout
 	send_visibility_to_monsters()
 	introed = true
+	Global.introed = true
 	start()
 
 func _input(event):

@@ -9,7 +9,7 @@ func _ready():
 	$Highlight.texture = load("res://scenes/main/assets/control/highlight_mask_%d.png" % type)
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action_pressed("click"):
+	if Global.introed and event.is_action_pressed("click"):
 		$Highlight.hide()
 		mask_chosen.emit(type)
 		
@@ -21,7 +21,8 @@ func put_mask_back():
 
 
 func _on_area_2d_mouse_entered() -> void:
-	$Highlight.show()
+	if Global.introed:
+		$Highlight.show()
 
 
 func _on_area_2d_mouse_exited() -> void:
